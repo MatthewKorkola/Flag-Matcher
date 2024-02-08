@@ -9,7 +9,17 @@ var countries = [
     "Ireland",
     "Greece",
     "France",
-    "Germany"
+    "Germany",
+    "Albania",
+    "Andorra",
+    "Armenia",
+    "Austria",
+    "Azerbaijan",
+    "Belarus",
+    "Belgium",
+    "Bosnia_and_Herzegovina",
+    "Bulgaria",
+    "Croatia"
 ];
 
 // Array to store the original options pool
@@ -22,7 +32,11 @@ var correctAnswers = 0;
 
 var incorrectAnswers = 0;
 
-// Function to shuffle array elements randomly
+var currentStreak = 0;
+
+var maxStreak = 0;
+
+// Function to shuffle array elements randomly (Fisher-Yates shuffle algorithm)
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -34,7 +48,7 @@ function shuffleArray(array) {
 function displayFlagAndOptions() {
     if (countries.length === 0) {
         // All flags have been seen, return to the main menu
-        redirectToMainMenu();
+        redirectToResults();
         return;
     }
 
@@ -50,6 +64,9 @@ function displayFlagAndOptions() {
     var incorrectElement = document.getElementById("incorrect");
     incorrectElement.textContent = "Incorrect Answers: " + incorrectAnswers;
 
+    var streakElement = document.getElementById("streak");
+    streakElement.textContent = "Streak: " + currentStreak;
+
     // Shuffle the array of countries
     shuffleArray(countries);
 
@@ -64,8 +81,8 @@ function displayFlagAndOptions() {
     var remainingOptions = optionsPool.filter(option => option !== currentCountry);
 
     // Get four random countries from the remaining options as incorrect options
-    remainingOptions = remainingOptions.slice(0, 4);
     shuffleArray(remainingOptions);
+    remainingOptions = remainingOptions.slice(0, 4);
 
     // Insert the correct option at a random position among the five options
     var correctPosition = Math.floor(Math.random() * 5);
@@ -92,12 +109,21 @@ function checkAnswer(isCorrect, correctCountry) {
         correctAnswers++;
         var correctElement = document.getElementById("correct");
         correctElement.textContent = "Correct Answers: " + correctAnswers;
+        currentStreak++;
+        var streakElement = document.getElementById("streak");
+        streakElement.textContent = "Streak: " + currentStreak;
+        if (currentStreak >= maxStreak) {
+            maxStreak = currentStreak
+        }
         displayMessage("Correct!", 1000);
         setTimeout(displayFlagAndOptions, 1000);
     } else {
         incorrectAnswers++
         var incorrectElement = document.getElementById("incorrect");
         incorrectElement.textContent = "Incorrect Answers: " + incorrectAnswers;
+        currentStreak = 0;
+        var streakElement = document.getElementById("streak");
+        streakElement.textContent = "Streak: " + currentStreak;
         displayMessage("Incorrect! The correct country is: " + correctCountry.replace(/_/g, ' '), 4000);
         setTimeout(displayFlagAndOptions, 4000);
     }
@@ -118,8 +144,36 @@ function displayMessage(message, duration) {
 }
 
 // Function to return to the main menu
-function redirectToMainMenu() {
-    window.location.href = "index.html";
+function redirectToResults() {
+    var correctAnswersPercentage = (correctAnswers / (correctAnswers + incorrectAnswers)) * 100;
+    var resultsMessage;
+
+    if (correctAnswersPercentage < 50) {
+        var resultsMessage = "Study harder!";
+    }
+    else if (correctAnswersPercentage < 70) {
+        var resultsMessage = "A decent result!";
+    }
+    else if (correctAnswersPercentage < 80) {
+        var resultsMessage = "Good work!";
+    }
+    else if (correctAnswersPercentage < 90) {
+        var resultsMessage = "A great result!";
+    }
+    else if (correctAnswersPercentage < 100) {
+        var resultsMessage = "Wow! Excellent work!";
+    }
+    else {
+        var resultsMessage = "A perfect result! Incredible!";
+    }
+
+    localStorage.setItem("correctAnswers", correctAnswers);
+    localStorage.setItem("incorrectAnswers", incorrectAnswers);
+    localStorage.setItem("streak", currentStreak);
+    localStorage.setItem("maxStreak", maxStreak);
+    localStorage.setItem("correctAnswersPercentage", correctAnswersPercentage);
+    localStorage.setItem("resultsMessage", resultsMessage);
+    window.location.href = "resultsEurope.html";
 }
 
 // Display the initial flag and options when the page loads

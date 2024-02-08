@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Final Results</title>
+	<script src="quizEurope.js" defer></script>
+</head>
+<body>
+
+    <h1>Europe (No Timer) Final Results</h1>
+     <div>
+        <p>Number of Correct Answers: <span id="correctAnswers"></span></p>
+        <p>Number of Incorrect Answers: <span id="incorrectAnswers"></span></p>
+        <p>Ending Streak: <span id="streak"></span></p>
+        <p>Max Streak: <span id="maxStreak"></span></p>
+        <p>Percentage Correct: <span id="percentageCorrect"></span>%</p> <br>
+        <p><span id="resultsMessage"></span></p>
+    </div>
+
+    <button onclick="playAgain()">Play Again</button>
+    <button onclick="redirectToMainMenu()">Main Menu</button>
+
+    <script>
+        // Retrieve quiz results from local storage and update HTML elements
+        document.getElementById("correctAnswers").textContent = localStorage.getItem("correctAnswers");
+        document.getElementById("incorrectAnswers").textContent = localStorage.getItem("incorrectAnswers");
+        document.getElementById("streak").textContent = localStorage.getItem("streak");
+        document.getElementById("maxStreak").textContent = localStorage.getItem("maxStreak");
+        document.getElementById("percentageCorrect").textContent = localStorage.getItem("correctAnswersPercentage");
+        document.getElementById("resultsMessage").textContent = localStorage.getItem("resultsMessage");
+
+        function playAgain() {
+            window.location.href = "Europe.html";
+        }
+        function redirectToMainMenu() {
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+</html>
