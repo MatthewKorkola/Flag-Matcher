@@ -3,17 +3,22 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Europe (No Timer) Final Results</title>
-	<script src="quizEurope.js" defer></script>
+	<title>Europe (Timer) Final Results</title>
+	<script src="quizEuropeTimed.js" defer></script>
 </head>
 <body>
 
-    <h1>Europe (No Timer) Final Results</h1>
+    <h1>Europe (Timer) Final Results</h1>
      <div>
         <p>Number of Correct Answers: <span id="correctAnswers"></span></p>
         <p>Number of Incorrect Answers: <span id="incorrectAnswers"></span></p>
         <p>Ending Streak: <span id="streak"></span></p>
         <p>Max Streak: <span id="maxStreak"></span></p>
+        <p>Number of close calls: <span id="closeCalls"></span></p>
+        <p>Number of quick correct answers: <span id="quickAnswers"></span></p>
+        <p>Fastest correct answer: <span id="fastestAnswer"></span>s</p>
+        <p>slowest correct answer: <span id="slowestAnswer"></span>s</p>
+        <p>Total time: <span id="totalTime"></span>s</p>
         <p>Percentage Correct: <span id="percentageCorrect"></span>%</p> <br>
         <p><span id="resultsMessage"></span></p>
     </div>
@@ -29,9 +34,14 @@
         document.getElementById("maxStreak").textContent = localStorage.getItem("maxStreak");
         document.getElementById("percentageCorrect").textContent = localStorage.getItem("correctAnswersPercentage");
         document.getElementById("resultsMessage").textContent = localStorage.getItem("resultsMessage");
+        document.getElementById("quickAnswers").textContent = localStorage.getItem("quickAnswers");
+        document.getElementById("closeCalls").textContent = localStorage.getItem("closeCalls");
+        document.getElementById("fastestAnswer").textContent = localStorage.getItem("fastestAnswer");
+        document.getElementById("slowestAnswer").textContent = localStorage.getItem("slowestAnswer");
+        document.getElementById("totalTime").textContent = localStorage.getItem("totalTime");
 
         function playAgain() {
-            window.location.href = "Europe.html";
+            window.location.href = "EuropeTimed.html";
         }
         function redirectToMainMenu() {
             window.location.href = "index.html";
