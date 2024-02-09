@@ -1,5 +1,5 @@
 // Array to store country names
-var countries = [
+var countriesEurope = [
     "the_United_Kingdom",
     "Finland",
     "Sweden",
@@ -22,6 +22,37 @@ var countries = [
     "Croatia"
 ];
 
+var countriesAsia = [
+    "Iran",
+    "Iraq",
+    "Israel",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kuwait",
+    "Kyrgyzstan",
+    "Laos",
+    "Lebanon",
+    "Malaysia"
+];
+
+// Choose countries array based on selected region
+var countries;
+
+var region = localStorage.getItem('region');
+
+if (region === 'Europe') {
+    countries = countriesEurope;
+} 
+else if (region === 'Asia') {
+    countries = countriesAsia;
+} 
+else {
+    // Handle invalid selection
+    console.error("Invalid region selection!");
+    countries = [];
+}
+
 // Array to store the original options pool
 var optionsPool = [...countries];
 
@@ -35,6 +66,59 @@ var incorrectAnswers = 0;
 var currentStreak = 0;
 
 var maxStreak = 0;
+
+var timer;
+
+var timeLeft;
+
+var extraMessage;
+
+var quickAnswers = 0;
+
+var closeCalls = 0;
+
+var fastestAnswer = 10;
+
+var slowestAnswer = 0;
+
+var totalTime = 0;
+
+// Function to start the timer
+function startTimer(correctCountry) {
+    timeLeft = 10; // Set the initial time limit to 10 seconds
+
+    // Display the initial time
+    var timerElement = document.getElementById("timer");
+    timerElement.textContent = "Time left: " + timeLeft.toFixed(2) + "s";
+
+    // Update the timer every second
+    timer = setInterval(function() {
+        timeLeft -= 0.01;
+        if (timeLeft < 0) {
+            timeLeft = 0
+        }
+        timerElement.textContent = "Time left: " + timeLeft.toFixed(2) + "s";
+
+        // If time runs out, handle it as an incorrect answer and reset the timer
+        if (timeLeft <= 0) {
+            totalTime += 10;
+            resetTimer()
+            incorrectAnswers++
+            var incorrectElement = document.getElementById("incorrect");
+            incorrectElement.textContent = "Incorrect Answers: " + incorrectAnswers;
+            currentStreak = 0;
+            var streakElement = document.getElementById("streak");
+            streakElement.textContent = "Streak: " + currentStreak;
+            displayMessage("Time depleted! The correct country is: " + correctCountry.replace(/_/g, ' '), 4000);
+            setTimeout(displayFlagAndOptions, 4000);
+        }
+    }, 10);
+}
+
+// Function to reset the timer
+function resetTimer() {
+    clearInterval(timer); // Stop the timer
+}
 
 // Function to shuffle array elements randomly (Fisher-Yates shuffle algorithm)
 function shuffleArray(array) {
@@ -73,6 +157,8 @@ function displayFlagAndOptions() {
     // Get the next country to display
     var currentCountry = countries.pop();
 
+    startTimer(currentCountry);
+
     // Include the correct answer in the options
     var options = document.getElementById("options");
     options.innerHTML = "";
@@ -105,7 +191,20 @@ function displayFlagAndOptions() {
 
 // Function to check the user's answer
 function checkAnswer(isCorrect, correctCountry) {
+    totalTime += 10 - timeLeft
+    resetTimer()
     if (isCorrect) {
+        if (timeLeft < 1) {
+            closeCalls++;
+            extraMessage = "Close call!"
+        }
+        else if (timeLeft > 8.9) {
+            quickAnswers++;
+            extraMessage = "Quick!"
+        }
+        else {
+            extraMessage = ""
+        }
         correctAnswers++;
         var correctElement = document.getElementById("correct");
         correctElement.textContent = "Correct Answers: " + correctAnswers;
@@ -113,12 +212,18 @@ function checkAnswer(isCorrect, correctCountry) {
         var streakElement = document.getElementById("streak");
         streakElement.textContent = "Streak: " + currentStreak;
         if (currentStreak >= maxStreak) {
-            maxStreak = currentStreak
+            maxStreak = currentStreak;
         }
-        displayMessage("Correct!", 1000);
+        if ((10 - timeLeft) < fastestAnswer) {
+            fastestAnswer = 10 - timeLeft;
+        }
+        if ((10 - timeLeft) > slowestAnswer) {
+            slowestAnswer = 10 - timeLeft;
+        }
+        displayMessage("Correct! " + extraMessage, 1000);
         setTimeout(displayFlagAndOptions, 1000);
     } else {
-        incorrectAnswers++
+        incorrectAnswers++;
         var incorrectElement = document.getElementById("incorrect");
         incorrectElement.textContent = "Incorrect Answers: " + incorrectAnswers;
         currentStreak = 0;
@@ -171,9 +276,14 @@ function redirectToResults() {
     localStorage.setItem("incorrectAnswers", incorrectAnswers);
     localStorage.setItem("streak", currentStreak);
     localStorage.setItem("maxStreak", maxStreak);
-    localStorage.setItem("correctAnswersPercentage", correctAnswersPercentage);
+    localStorage.setItem("correctAnswersPercentage", correctAnswersPercentage.toFixed(2));
     localStorage.setItem("resultsMessage", resultsMessage);
-    window.location.href = "resultsEurope.html";
+    localStorage.setItem("quickAnswers", quickAnswers);
+    localStorage.setItem("closeCalls", closeCalls);
+    localStorage.setItem("fastestAnswer", fastestAnswer.toFixed(2));
+    localStorage.setItem("slowestAnswer", slowestAnswer.toFixed(2));
+    localStorage.setItem("totalTime", totalTime.toFixed(2));
+    window.location.href = "resultsTimed.html";
 }
 
 // Display the initial flag and options when the page loads

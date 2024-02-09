@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Flag Matcher</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flag Matcher</title>
 </head>
 <body>
-	<h1>Flag Matcher</h1> <br> <br>
-	<h2>Pick a Mode</h2>
+    <h1>Flag Matcher</h1> <br> <br>
+    <h2>Pick a Mode</h2>
 
-	<button onclick="redirectToEurope()">Europe (No Timer)</button>
-	<button onclick="redirectToEuropeTimed()">Europe (Timer)</button>
+    <button onclick="redirectToMode('Europe', false)">Europe (No Timer)</button>
+    <button onclick="redirectToMode('Europe', true)">Europe (Timer)</button> <br>
+    <button onclick="redirectToMode('Asia', false)">Asia (No Timer)</button>
+    <button onclick="redirectToMode('Asia', true)">Asia (Timer)</button>
 
     <script>
-        function redirectToEurope() {
-            window.location.href = "Europe.html";
-        }
-        function redirectToEuropeTimed() {
-            window.location.href = "EuropeTimed.html";
+        function redirectToMode(region, withTimer) {
+            localStorage.setItem('region', region);
+            if (!withTimer) {
+            	window.location.href = "quiz.html";
+            }
+            else {
+            	window.location.href = "quizTimed.html";
+            }
+            
         }
     </script>
 

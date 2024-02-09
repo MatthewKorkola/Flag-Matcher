@@ -3,23 +3,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Europe (Timer)</title>
+    <title>Quiz (Timer)</title>
 
     <!-- Include the quiz.js file -->
-    <script src="quizEuropeTimed.js"></script>
+    <script src="quizTimed.js"></script>
 </head>
 <body>
     <!-- Button to go back to the main menu -->
     <button onclick="redirectToMainMenu()">Main Menu</button>
 
+    <h1>Europe (Timer)</h1>
+    <h2>Match the Flag to the Country</h2> <br>
+
     <script>
         function redirectToMainMenu() {
             window.location.href = "index.html";
         }
-    </script>
 
-	<h1>Europe (Timer)</h1>
-	<h2>Match the Flag to the Country</h2> <br>
+        // Retrieve region from localStorage
+        var region = localStorage.getItem('region');
+
+        // Update the h1 tag to display the region
+        var h1Element = document.querySelector('h1');
+        h1Element.textContent = "Quiz - " + region;
+    </script>
 
     <!-- Flag and options elements -->
     <img id="flag" src="" alt=""> <br>

@@ -3,12 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Europe (Timer) Final Results</title>
-	<script src="quizEuropeTimed.js" defer></script>
+	<title>Final Results (Timer)</title>
 </head>
 <body>
 
-    <h1>Europe (Timer) Final Results</h1>
+    <h1>Final Results (Timer)</h1>
      <div>
         <p>Number of Correct Answers: <span id="correctAnswers"></span></p>
         <p>Number of Incorrect Answers: <span id="incorrectAnswers"></span></p>
@@ -41,11 +40,18 @@
         document.getElementById("totalTime").textContent = localStorage.getItem("totalTime");
 
         function playAgain() {
-            window.location.href = "EuropeTimed.html";
+            window.location.href = "quizTimed.html";
         }
         function redirectToMainMenu() {
             window.location.href = "index.html";
         }
+
+        // Retrieve region from localStorage
+        var region = localStorage.getItem('region');
+
+        // Update the h1 tag to display the region
+        var h1Element = document.querySelector('h1');
+        h1Element.textContent = "Final Results (Timer) - " + region;
 
     </script>
 
