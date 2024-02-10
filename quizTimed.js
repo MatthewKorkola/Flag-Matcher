@@ -1,28 +1,67 @@
 // Array to store country names
 var countriesEurope = [
-    "the_United_Kingdom",
-    "Finland",
-    "Sweden",
-    "Switzerland",
-    "Norway",
-    "Italy",
-    "Ireland",
-    "Greece",
-    "France",
-    "Germany",
     "Albania",
     "Andorra",
-    "Armenia",
     "Austria",
-    "Azerbaijan",
     "Belarus",
     "Belgium",
     "Bosnia_and_Herzegovina",
     "Bulgaria",
-    "Croatia"
+    "Croatia",
+    "Cyprus",
+    "the_Czech_Republic",
+    "Denmark",
+    "Estonia",
+    "Finland",
+    "France",
+    "Georgia",
+    "Germany",
+    "Greece",
+    "Hungary",
+    "Iceland",
+    "Ireland",
+    "Italy",
+    "Latvia",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "Malta",
+    "Moldova",
+    "Monaco",
+    "Montenegro",
+    "the_Netherlands",
+    "North_Macedonia",
+    "Norway",
+    "Poland",
+    "Portugal",
+    "Romania",
+    "Russia",
+    "San_Marino",
+    "Serbia",
+    "Slovakia",
+    "Slovenia",
+    "Spain",
+    "Sweden",
+    "Switzerland",
+    "Turkey",
+    "Ukraine",
+    "the_United_Kingdom",
+    "Vatican_City"
 ];
 
 var countriesAsia = [
+    "Afghanistan",
+    "Armenia",
+    "Azerbaijan",
+    "Bahrain",
+    "Bangladesh",
+    "Bhutan",
+    "Brunei",
+    "Cambodia",
+    "China",
+    "East_Timor",
+    "India",
+    "Indonesia",
     "Iran",
     "Iraq",
     "Israel",
@@ -33,7 +72,30 @@ var countriesAsia = [
     "Kyrgyzstan",
     "Laos",
     "Lebanon",
-    "Malaysia"
+    "Malaysia",
+    "Maldives",
+    "Mongolia",
+    "Myanmar",
+    "Nepal",
+    "North_Korea",
+    "Oman",
+    "Pakistan",
+    "Papua_New_Guinea",
+    "the_Philippines",
+    "Qatar",
+    "Saudi_Arabia",
+    "Singapore",
+    "South_Korea",
+    "Sri_Lanka",
+    "Syria",
+    "Taiwan",
+    "Tajikistan",
+    "Thailand",
+    "Turkmenistan",
+    "the_United_Arab_Emirates",
+    "Uzbekistan",
+    "Vietnam",
+    "Yemen"
 ];
 
 // Choose countries array based on selected region
@@ -83,9 +145,11 @@ var slowestAnswer = 0;
 
 var totalTime = 0;
 
+const timeGiven = 5;
+
 // Function to start the timer
 function startTimer(correctCountry) {
-    timeLeft = 10; // Set the initial time limit to 10 seconds
+    timeLeft = 5; // Set the initial time limit to 5 seconds
 
     // Display the initial time
     var timerElement = document.getElementById("timer");
@@ -101,9 +165,9 @@ function startTimer(correctCountry) {
 
         // If time runs out, handle it as an incorrect answer and reset the timer
         if (timeLeft <= 0) {
-            totalTime += 10;
-            resetTimer()
-            incorrectAnswers++
+            totalTime += timeGiven;
+            resetTimer();
+            incorrectAnswers++;
             var incorrectElement = document.getElementById("incorrect");
             incorrectElement.textContent = "Incorrect Answers: " + incorrectAnswers;
             currentStreak = 0;
@@ -130,7 +194,7 @@ function shuffleArray(array) {
 
 // Function to display a new flag and options
 function displayFlagAndOptions() {
-    if (countries.length === 0) {
+    if (!countries || countries.length === 0) {
         // All flags have been seen, return to the main menu
         redirectToResults();
         return;
@@ -191,19 +255,19 @@ function displayFlagAndOptions() {
 
 // Function to check the user's answer
 function checkAnswer(isCorrect, correctCountry) {
-    totalTime += 10 - timeLeft
+    totalTime += timeGiven - timeLeft;
     resetTimer()
     if (isCorrect) {
         if (timeLeft < 1) {
             closeCalls++;
-            extraMessage = "Close call!"
+            extraMessage = "Close call!";
         }
-        else if (timeLeft > 8.9) {
+        else if (timeLeft > 3.6) {
             quickAnswers++;
-            extraMessage = "Quick!"
+            extraMessage = "Quick!";
         }
         else {
-            extraMessage = ""
+            extraMessage = "";
         }
         correctAnswers++;
         var correctElement = document.getElementById("correct");
@@ -214,11 +278,11 @@ function checkAnswer(isCorrect, correctCountry) {
         if (currentStreak >= maxStreak) {
             maxStreak = currentStreak;
         }
-        if ((10 - timeLeft) < fastestAnswer) {
-            fastestAnswer = 10 - timeLeft;
+        if ((timeGiven - timeLeft) < fastestAnswer) {
+            fastestAnswer = timeGiven - timeLeft;
         }
-        if ((10 - timeLeft) > slowestAnswer) {
-            slowestAnswer = 10 - timeLeft;
+        if ((timeGiven - timeLeft) > slowestAnswer) {
+            slowestAnswer = timeGiven - timeLeft;
         }
         displayMessage("Correct! " + extraMessage, 1000);
         setTimeout(displayFlagAndOptions, 1000);
