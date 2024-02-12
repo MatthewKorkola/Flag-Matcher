@@ -13,12 +13,13 @@
         <p>Number of Incorrect Answers: <span id="incorrectAnswers"></span></p>
         <p>Ending Streak: <span id="streak"></span></p>
         <p>Max Streak: <span id="maxStreak"></span></p>
-        <p>Number of close calls: <span id="closeCalls"></span></p>
-        <p>Number of quick correct answers: <span id="quickAnswers"></span></p>
-        <p>Fastest correct answer: <span id="fastestAnswer"></span>s</p>
-        <p>slowest correct answer: <span id="slowestAnswer"></span>s</p>
-        <p>Total time: <span id="totalTime"></span>s</p>
-        <p>Percentage Correct: <span id="percentageCorrect"></span>%</p> <br>
+        <p>Number of Close Calls: <span id="closeCalls"></span></p>
+        <p>Number of Quick Correct Answers: <span id="quickAnswers"></span></p>
+        <p>Fastest Correct Answer: <span id="fastestAnswer"></span>s</p>
+        <p>Slowest Correct Answer: <span id="slowestAnswer"></span>s</p>
+        <p>Total Time: <span id="totalTime"></span>s</p>
+        <p>Percentage Correct: <span id="percentageCorrect"></span>%</p>
+        <p>Overall Performance: <span id="points"></span> points</p> <br>
         <p><span id="resultsMessage"></span></p>
     </div>
 
@@ -38,6 +39,7 @@
         document.getElementById("fastestAnswer").textContent = localStorage.getItem("fastestAnswer");
         document.getElementById("slowestAnswer").textContent = localStorage.getItem("slowestAnswer");
         document.getElementById("totalTime").textContent = localStorage.getItem("totalTime");
+        document.getElementById("points").textContent = localStorage.getItem("points");
 
         function playAgain() {
             window.location.href = "quizTimed.html";

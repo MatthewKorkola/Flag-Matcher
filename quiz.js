@@ -162,6 +162,7 @@ var countriesAmericasAndOceania = [
     "the_Bahamas",
     "Barbados",
     "Belize",
+    "Bolivia",
     "Brazil",
     "Canada",
     "Chile",
@@ -210,9 +211,15 @@ var countriesAmericasAndOceania = [
 // Choose countries array based on selected region
 var countries;
 
+var random = false;
+
 var region = localStorage.getItem('region');
 
-if (region === 'Europe') {
+if (region === '30 Random') {
+    countries = countriesEurope.concat(countriesAsia, countriesAfrica, countriesAmericasAndOceania);
+    random = true;
+}
+else if (region === 'Europe') {
     countries = countriesEurope;
 } 
 else if (region === 'Asia') {
@@ -221,8 +228,11 @@ else if (region === 'Asia') {
 else if (region === "Africa") {
     countries = countriesAfrica;
 }
-else if (region === "The Americas and Oceania") {
+else if (region === 'The Americas and Oceania') {
     countries = countriesAmericasAndOceania;
+}
+else if (region === 'All Countries') {
+    countries = countriesEurope.concat(countriesAsia, countriesAfrica, countriesAmericasAndOceania);
 }
 else {
     // Handle invalid selection
@@ -232,6 +242,11 @@ else {
 
 // Array to store the original options pool
 var optionsPool = [...countries];
+
+if (random) {
+    shuffleArray(countries);
+    countries = countries.slice(0, 30);
+}
 
 // Variable to keep track of the current flag number
 var currentFlagNumber = 0;
@@ -269,7 +284,12 @@ function displayFlagAndOptions() {
     currentFlagNumber++;
 
     var progressElement = document.getElementById("progress");
-    progressElement.textContent = "Flag: " + currentFlagNumber + " / " + optionsPool.length;
+    if (random) {
+        progressElement.textContent = "Flag: " + currentFlagNumber + " / 30";
+    }
+    else {
+        progressElement.textContent = "Flag: " + currentFlagNumber + " / " + optionsPool.length;
+    }
 
     var correctElement = document.getElementById("correct");
     correctElement.textContent = "Correct Answers: " + correctAnswers;
@@ -342,8 +362,8 @@ function checkAnswer(isCorrect, correctCountry) {
             currentStreak = 0;
             var streakElement = document.getElementById("streak");
             streakElement.textContent = "Streak: " + currentStreak;
-            displayMessage("Incorrect! The correct country is: " + correctCountry.replace(/_/g, ' '), 4000);
-            setTimeout(displayFlagAndOptions, 4000);
+            displayMessage("Incorrect! The correct country is: " + correctCountry.replace(/_/g, ' '), 3000);
+            setTimeout(displayFlagAndOptions, 3000);
         }
 
         // Display the next flag and options

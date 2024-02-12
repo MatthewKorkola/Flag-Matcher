@@ -1,3 +1,4 @@
+<!-- Author: Matthew Korkola -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,8 @@
     <h1>Flag Matcher</h1> <br> <br>
     <h2>Pick a Mode</h2>
 
+    <button onclick="redirectToMode('30 Random', false)">30 Random (No Timer)</button>
+    <button onclick="redirectToMode('30 Random', true)">30 Random (Timer)</button> <br>
     <button onclick="redirectToMode('Europe', false)">Europe (No Timer)</button>
     <button onclick="redirectToMode('Europe', true)">Europe (Timer)</button> <br>
     <button onclick="redirectToMode('Asia', false)">Asia (No Timer)</button>
@@ -16,7 +19,9 @@
     <button onclick="redirectToMode('Africa', false)">Africa (No Timer)</button>
     <button onclick="redirectToMode('Africa', true)">Africa (Timer)</button> <br>
     <button onclick="redirectToMode('The Americas and Oceania', false)">The Americas and Oceania (No Timer)</button>
-    <button onclick="redirectToMode('The Americas and Oceania', true)">The Americas and Oceania (Timer)</button>
+    <button onclick="redirectToMode('The Americas and Oceania', true)">The Americas and Oceania (Timer)</button> <br>
+    <button onclick="redirectToMode('All Countries', false)">All Countries (No Timer)</button>
+    <button onclick="redirectToMode('All Countries', true)">All Countries (Timer)</button>
 
     <script>
         function redirectToMode(region, withTimer) {

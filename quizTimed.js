@@ -137,7 +137,6 @@ var countriesAsia = [
     "North_Korea",
     "Oman",
     "Pakistan",
-    "Papua_New_Guinea",
     "the_Philippines",
     "Qatar",
     "Saudi_Arabia",
@@ -162,6 +161,7 @@ var countriesAmericasAndOceania = [
     "the_Bahamas",
     "Barbados",
     "Belize",
+    "Bolivia",
     "Brazil",
     "Canada",
     "Chile",
@@ -209,19 +209,28 @@ var countriesAmericasAndOceania = [
 // Choose countries array based on selected region
 var countries;
 
+var random = false;
+
 var region = localStorage.getItem('region');
 
-if (region === 'Europe') {
+if (region === '30 Random') {
+    countries = countriesEurope.concat(countriesAsia, countriesAfrica, countriesAmericasAndOceania);
+    random = true;
+}
+else if (region === 'Europe') {
     countries = countriesEurope;
 } 
 else if (region === 'Asia') {
     countries = countriesAsia;
-} 
-else if (region === 'Africa') {
+}
+else if (region === "Africa") {
     countries = countriesAfrica;
 }
-else if (region === "The Americas and Oceania") {
+else if (region === 'The Americas and Oceania') {
     countries = countriesAmericasAndOceania;
+}
+else if (region === 'All Countries') {
+    countries = countriesEurope.concat(countriesAsia, countriesAfrica, countriesAmericasAndOceania);
 }
 else {
     // Handle invalid selection
@@ -231,6 +240,11 @@ else {
 
 // Array to store the original options pool
 var optionsPool = [...countries];
+
+if (random) {
+    shuffleArray(countries);
+    countries = countries.slice(0, 30);
+}
 
 // Variable to keep track of the current flag number
 var currentFlagNumber = 0;
@@ -253,13 +267,13 @@ var quickAnswers = 0;
 
 var closeCalls = 0;
 
-var fastestAnswer = 5;
+const timeGiven = 5;
+
+var fastestAnswer = timeGiven;
 
 var slowestAnswer = 0;
 
 var totalTime = 0;
-
-const timeGiven = 5;
 
 var answerSelected = false;
 
@@ -290,8 +304,8 @@ function startTimer(correctCountry) {
             currentStreak = 0;
             var streakElement = document.getElementById("streak");
             streakElement.textContent = "Streak: " + currentStreak;
-            displayMessage("Time depleted! The correct country is: " + correctCountry.replace(/_/g, ' '), 4000);
-            setTimeout(displayFlagAndOptions, 4000);
+            displayMessage("Time depleted! The correct country is: " + correctCountry.replace(/_/g, ' '), 3000);
+            setTimeout(displayFlagAndOptions, 3000);
         }
     }, 10);
 }
@@ -324,7 +338,12 @@ function displayFlagAndOptions() {
     currentFlagNumber++;
 
     var progressElement = document.getElementById("progress");
-    progressElement.textContent = "Flag: " + currentFlagNumber + " / " + optionsPool.length;
+    if (random) {
+        progressElement.textContent = "Flag: " + currentFlagNumber + " / 30";
+    }
+    else {
+        progressElement.textContent = "Flag: " + currentFlagNumber + " / " + optionsPool.length;
+    }
 
     var correctElement = document.getElementById("correct");
     correctElement.textContent = "Correct Answers: " + correctAnswers;
@@ -418,8 +437,8 @@ function checkAnswer(isCorrect, correctCountry) {
             currentStreak = 0;
             var streakElement = document.getElementById("streak");
             streakElement.textContent = "Streak: " + currentStreak;
-            displayMessage("Incorrect! The correct country is: " + correctCountry.replace(/_/g, ' '), 4000);
-            setTimeout(displayFlagAndOptions, 4000);
+            displayMessage("Incorrect! The correct country is: " + correctCountry.replace(/_/g, ' '), 3000);
+            setTimeout(displayFlagAndOptions, 3000);
         }
 
         // Display the next flag and options
@@ -479,6 +498,18 @@ function redirectToResults() {
         resultsMessage = "A perfect result! Incredible!";
     }
 
+    var numberOfFlags;
+    if (random) {
+        numberOfFlags = 30;
+    }
+    else {
+        numberOfFlags = optionsPool.length;
+    }
+
+    var points = 1000 + (5 * correctAnswers) - (5 * incorrectAnswers) + (2 * maxStreak) + 
+    (2 * quickAnswers) - (2 * closeCalls) + (100 / (fastestAnswer + 1)) - (5 * slowestAnswer) + 
+    (100 - (100 * (totalTime / (numberOfFlags * timeGiven))));
+
     localStorage.setItem("correctAnswers", correctAnswers);
     localStorage.setItem("incorrectAnswers", incorrectAnswers);
     localStorage.setItem("streak", currentStreak);
@@ -490,6 +521,7 @@ function redirectToResults() {
     localStorage.setItem("fastestAnswer", fastestAnswer.toFixed(2));
     localStorage.setItem("slowestAnswer", slowestAnswer.toFixed(2));
     localStorage.setItem("totalTime", totalTime.toFixed(2));
+    localStorage.setItem("points", Math.round(points));
     window.location.href = "resultsTimed.html";
 }
 
