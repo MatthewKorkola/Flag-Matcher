@@ -49,6 +49,63 @@ var countriesEurope = [
     "Vatican_City"
 ];
 
+var countriesAfrica = [
+    "Algeria",
+    "Angola",
+    "Benin",
+    "Botswana",
+    "Burkina_Faso",
+    "Burundi",
+    "Cameroon",
+    "Cape_Verde",
+    "the_Central_African_Republic",
+    "Chad",
+    "the_Comoros",
+    "the_Democratic_Republic_of_the_Congo",
+    "the_Republic_of_the_Congo",
+    "Djibouti",
+    "Egypt",
+    "Equatorial_Guinea",
+    "Eritrea",
+    "Eswatini",
+    "Ethiopia",
+    "Gabon",
+    "The_Gambia",
+    "Ghana",
+    "Guinea",
+    "Guinea-Bissau",
+    "Ivory_Coast",
+    "Kenya",
+    "Lesotho",
+    "Liberia",
+    "Libya",
+    "Madagascar",
+    "Malawi",
+    "Mali",
+    "Mauritania",
+    "Mauritius",
+    "Morocco",
+    "Mozambique",
+    "Namibia",
+    "Niger",
+    "Nigeria",
+    "Rwanda",
+    "São_Tomé_and_Príncipe",
+    "Senegal",
+    "Seychelles",
+    "Sierra_Leone",
+    "Somalia",
+    "South_Africa",
+    "South_Sudan",
+    "Sudan",
+    "Tanzania",
+    "Togo",
+    "Tunisia",
+    "Uganda",
+    "Zambia",
+    "Zimbabwe"
+];
+
 var countriesAsia = [
     "Afghanistan",
     "Armenia",
@@ -98,6 +155,57 @@ var countriesAsia = [
     "Yemen"
 ];
 
+var countriesAmericasAndOceania = [
+    "Antigua_and_Barbuda",
+    "Argentina",
+    "Australia",
+    "the_Bahamas",
+    "Barbados",
+    "Belize",
+    "Brazil",
+    "Canada",
+    "Chile",
+    "Colombia",
+    "Costa_Rica",
+    "Cuba",
+    "Dominica",
+    "the_Dominican_Republic",
+    "Ecuador",
+    "El_Salvador",
+    "the_Federated_States_of_Micronesia",
+    "Fiji",
+    "Grenada",
+    "Guatemala",
+    "Guyana",
+    "Haiti",
+    "Honduras",
+    "Jamaica",
+    "Kiribati",
+    "the_Marshall_Islands",
+    "Mexico",
+    "Nauru",
+    "New_Zealand",
+    "Nicaragua",
+    "Palau",
+    "Panama",
+    "Papua_New_Guinea",
+    "Paraguay",
+    "Peru",
+    "Saint_Kitts_and_Nevis",
+    "Saint_Lucia",
+    "Saint_Vincent_and_the_Grenadines",
+    "Samoa",
+    "the_Solomon_Islands",
+    "Suriname",
+    "Tonga",
+    "Trinidad_and_Tobago",
+    "Tuvalu",
+    "the_United_States",
+    "Uruguay",
+    "Vanuatu",
+    "Venezuela"
+];
+
 // Choose countries array based on selected region
 var countries;
 
@@ -109,6 +217,12 @@ if (region === 'Europe') {
 else if (region === 'Asia') {
     countries = countriesAsia;
 } 
+else if (region === 'Africa') {
+    countries = countriesAfrica;
+}
+else if (region === "The Americas and Oceania") {
+    countries = countriesAmericasAndOceania;
+}
 else {
     // Handle invalid selection
     console.error("Invalid region selection!");
@@ -139,13 +253,15 @@ var quickAnswers = 0;
 
 var closeCalls = 0;
 
-var fastestAnswer = 10;
+var fastestAnswer = 5;
 
 var slowestAnswer = 0;
 
 var totalTime = 0;
 
 const timeGiven = 5;
+
+var answerSelected = false;
 
 // Function to start the timer
 function startTimer(correctCountry) {
@@ -165,6 +281,7 @@ function startTimer(correctCountry) {
 
         // If time runs out, handle it as an incorrect answer and reset the timer
         if (timeLeft <= 0) {
+            disableOptionButtons()
             totalTime += timeGiven;
             resetTimer();
             incorrectAnswers++;
@@ -199,6 +316,9 @@ function displayFlagAndOptions() {
         redirectToResults();
         return;
     }
+
+    enableOptionButtons();
+    answerSelected = false;
 
     // Increment the current flag number
     currentFlagNumber++;
@@ -255,50 +375,57 @@ function displayFlagAndOptions() {
 
 // Function to check the user's answer
 function checkAnswer(isCorrect, correctCountry) {
-    totalTime += timeGiven - timeLeft;
-    resetTimer()
-    if (isCorrect) {
-        if (timeLeft < 1) {
-            closeCalls++;
-            extraMessage = "Close call!";
-        }
-        else if (timeLeft > 3.6) {
-            quickAnswers++;
-            extraMessage = "Quick!";
-        }
-        else {
-            extraMessage = "";
-        }
-        correctAnswers++;
-        var correctElement = document.getElementById("correct");
-        correctElement.textContent = "Correct Answers: " + correctAnswers;
-        currentStreak++;
-        var streakElement = document.getElementById("streak");
-        streakElement.textContent = "Streak: " + currentStreak;
-        if (currentStreak >= maxStreak) {
-            maxStreak = currentStreak;
-        }
-        if ((timeGiven - timeLeft) < fastestAnswer) {
-            fastestAnswer = timeGiven - timeLeft;
-        }
-        if ((timeGiven - timeLeft) > slowestAnswer) {
-            slowestAnswer = timeGiven - timeLeft;
-        }
-        displayMessage("Correct! " + extraMessage, 1000);
-        setTimeout(displayFlagAndOptions, 1000);
-    } else {
-        incorrectAnswers++;
-        var incorrectElement = document.getElementById("incorrect");
-        incorrectElement.textContent = "Incorrect Answers: " + incorrectAnswers;
-        currentStreak = 0;
-        var streakElement = document.getElementById("streak");
-        streakElement.textContent = "Streak: " + currentStreak;
-        displayMessage("Incorrect! The correct country is: " + correctCountry.replace(/_/g, ' '), 4000);
-        setTimeout(displayFlagAndOptions, 4000);
-    }
+    if (!answerSelected) { // Check if an answer has already been selected
+        answerSelected = true; // Set flag to true once an answer is selected
+        // Disable option buttons
+        disableOptionButtons();
 
-    // Display the next flag and options
-    //displayFlagAndOptions();
+        totalTime += timeGiven - timeLeft;
+        resetTimer()
+        if (isCorrect) {
+            if (timeLeft < 1.4) {
+                closeCalls++;
+                extraMessage = "Close call!";
+            }
+            else if (timeLeft > 3.6) {
+                quickAnswers++;
+                extraMessage = "Quick!";
+            }
+            else {
+                extraMessage = "";
+            }
+            correctAnswers++;
+            var correctElement = document.getElementById("correct");
+            correctElement.textContent = "Correct Answers: " + correctAnswers;
+            currentStreak++;
+            var streakElement = document.getElementById("streak");
+            streakElement.textContent = "Streak: " + currentStreak;
+            if (currentStreak >= maxStreak) {
+                maxStreak = currentStreak;
+            }
+            if ((timeGiven - timeLeft) < fastestAnswer) {
+                fastestAnswer = timeGiven - timeLeft;
+            }
+            if ((timeGiven - timeLeft) > slowestAnswer) {
+                slowestAnswer = timeGiven - timeLeft;
+            }
+            displayMessage("Correct! " + extraMessage, 1000);
+            setTimeout(displayFlagAndOptions, 1000);
+        } else {
+            incorrectAnswers++;
+            var incorrectElement = document.getElementById("incorrect");
+            incorrectElement.textContent = "Incorrect Answers: " + incorrectAnswers;
+            currentStreak = 0;
+            var streakElement = document.getElementById("streak");
+            streakElement.textContent = "Streak: " + currentStreak;
+            displayMessage("Incorrect! The correct country is: " + correctCountry.replace(/_/g, ' '), 4000);
+            setTimeout(displayFlagAndOptions, 4000);
+        }
+
+        // Display the next flag and options
+        //displayFlagAndOptions();
+    }
+    
 }
 
 // Function to display a message on the screen for a specified duration
@@ -312,28 +439,44 @@ function displayMessage(message, duration) {
     }, duration);
 }
 
+// Function to enable option buttons
+function enableOptionButtons() {
+    var optionButtons = document.querySelectorAll("#options button");
+    optionButtons.forEach(function(button) {
+        button.disabled = false;
+    });
+}
+
+// Function to disable option buttons
+function disableOptionButtons() {
+    var optionButtons = document.querySelectorAll("#options button");
+    optionButtons.forEach(function(button) {
+        button.disabled = true;
+    });
+}
+
 // Function to return to the main menu
 function redirectToResults() {
     var correctAnswersPercentage = (correctAnswers / (correctAnswers + incorrectAnswers)) * 100;
     var resultsMessage;
 
     if (correctAnswersPercentage < 50) {
-        var resultsMessage = "Study harder!";
+        resultsMessage = "Study harder!";
     }
     else if (correctAnswersPercentage < 70) {
-        var resultsMessage = "A decent result!";
+        resultsMessage = "A decent result!";
     }
     else if (correctAnswersPercentage < 80) {
-        var resultsMessage = "Good work!";
+        resultsMessage = "Good work!";
     }
     else if (correctAnswersPercentage < 90) {
-        var resultsMessage = "A great result!";
+        resultsMessage = "A great result!";
     }
     else if (correctAnswersPercentage < 100) {
-        var resultsMessage = "Wow! Excellent work!";
+        resultsMessage = "Wow! Excellent work!";
     }
     else {
-        var resultsMessage = "A perfect result! Incredible!";
+        resultsMessage = "A perfect result! Incredible!";
     }
 
     localStorage.setItem("correctAnswers", correctAnswers);
