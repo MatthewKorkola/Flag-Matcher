@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flag Archive</title>
+</head>
+<body>
+	<button onclick="redirectToMainMenu()">Main Menu</button> <br> <br>
+    <label for="region">Select a region:</label>
+    <select id="region" onchange="showFlags()">
+    	<option value="All">All Countries</option>
+        <option value="Europe">Europe</option>
+        <option value="Asia">Asia</option>
+        <option value="Africa">Africa</option>
+        <option value="AmericasAndOceania">Americas and Oceania</option>
+    </select>
+    <div id="flags-container"></div>
+
+    <script src="flagArchive.js"></script>
+
+    <script>
+        function redirectToMainMenu() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

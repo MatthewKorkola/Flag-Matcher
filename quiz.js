@@ -9,7 +9,7 @@ var countriesEurope = [
     "Bulgaria",
     "Croatia",
     "Cyprus",
-    "the_Czech_Republic",
+    "Czech_Republic",
     "Denmark",
     "Estonia",
     "Finland",
@@ -29,7 +29,7 @@ var countriesEurope = [
     "Moldova",
     "Monaco",
     "Montenegro",
-    "the_Netherlands",
+    "Netherlands",
     "North_Macedonia",
     "Norway",
     "Poland",
@@ -45,7 +45,7 @@ var countriesEurope = [
     "Switzerland",
     "Turkey",
     "Ukraine",
-    "the_United_Kingdom",
+    "United_Kingdom",
     "Vatican_City"
 ];
 
@@ -58,11 +58,11 @@ var countriesAfrica = [
     "Burundi",
     "Cameroon",
     "Cape_Verde",
-    "the_Central_African_Republic",
+    "Central_African_Republic",
     "Chad",
-    "the_Comoros",
-    "the_Democratic_Republic_of_the_Congo",
-    "the_Republic_of_the_Congo",
+    "Comoros",
+    "Democratic_Republic_of_the_Congo",
+    "Republic_of_the_Congo",
     "Djibouti",
     "Egypt",
     "Equatorial_Guinea",
@@ -70,7 +70,7 @@ var countriesAfrica = [
     "Eswatini",
     "Ethiopia",
     "Gabon",
-    "The_Gambia",
+    "Gambia",
     "Ghana",
     "Guinea",
     "Guinea-Bissau",
@@ -106,7 +106,6 @@ var countriesAfrica = [
     "Zimbabwe"
 ];
 
-
 var countriesAsia = [
     "Afghanistan",
     "Armenia",
@@ -138,7 +137,7 @@ var countriesAsia = [
     "North_Korea",
     "Oman",
     "Pakistan",
-    "the_Philippines",
+    "Philippines",
     "Qatar",
     "Saudi_Arabia",
     "Singapore",
@@ -149,7 +148,7 @@ var countriesAsia = [
     "Tajikistan",
     "Thailand",
     "Turkmenistan",
-    "the_United_Arab_Emirates",
+    "United_Arab_Emirates",
     "Uzbekistan",
     "Vietnam",
     "Yemen"
@@ -159,7 +158,7 @@ var countriesAmericasAndOceania = [
     "Antigua_and_Barbuda",
     "Argentina",
     "Australia",
-    "the_Bahamas",
+    "Bahamas",
     "Barbados",
     "Belize",
     "Bolivia",
@@ -170,10 +169,10 @@ var countriesAmericasAndOceania = [
     "Costa_Rica",
     "Cuba",
     "Dominica",
-    "the_Dominican_Republic",
+    "Dominican_Republic",
     "Ecuador",
     "El_Salvador",
-    "the_Federated_States_of_Micronesia",
+    "Federated_States_of_Micronesia",
     "Fiji",
     "Grenada",
     "Guatemala",
@@ -182,7 +181,7 @@ var countriesAmericasAndOceania = [
     "Honduras",
     "Jamaica",
     "Kiribati",
-    "the_Marshall_Islands",
+    "Marshall_Islands",
     "Mexico",
     "Nauru",
     "New_Zealand",
@@ -196,12 +195,12 @@ var countriesAmericasAndOceania = [
     "Saint_Lucia",
     "Saint_Vincent_and_the_Grenadines",
     "Samoa",
-    "the_Solomon_Islands",
+    "Solomon_Islands",
     "Suriname",
     "Tonga",
     "Trinidad_and_Tobago",
     "Tuvalu",
-    "the_United_States",
+    "United_States",
     "Uruguay",
     "Vanuatu",
     "Venezuela"
@@ -332,7 +331,7 @@ function displayFlagAndOptions() {
 
     // Display the flag
     var flagImage = document.getElementById("flag");
-    flagImage.src = "Flag_of_" + currentCountry + ".svg.png";
+    flagImage.src = "Flags/Flag_of_" + currentCountry + ".svg.png";
     flagImage.alt = currentCountry;
 }
 

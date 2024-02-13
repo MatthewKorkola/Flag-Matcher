@@ -21,7 +21,12 @@
     <button onclick="redirectToMode('The Americas and Oceania', false)">The Americas and Oceania (No Timer)</button>
     <button onclick="redirectToMode('The Americas and Oceania', true)">The Americas and Oceania (Timer)</button> <br>
     <button onclick="redirectToMode('All Countries', false)">All Countries (No Timer)</button>
-    <button onclick="redirectToMode('All Countries', true)">All Countries (Timer)</button>
+    <button onclick="redirectToMode('All Countries', true)">All Countries (Timer)</button> <br> <br> <br> <br>
+    <button onclick="redirectToFlags()">Flag Archive</button> <br>
+    <button onclick="redirectToPersonalRecords()">Personal Records</button> <br>
+    <button onclick="redirectToLeaderboards()">Leaderboards</button> <br>
+    <button onclick="logout()">Logout</button>
+
 
     <script>
         function redirectToMode(region, withTimer) {
@@ -33,6 +38,9 @@
             	window.location.href = "quizTimed.html";
             }
             
+        }
+        function redirectToFlags() {
+        	window.location.href = "flagArchive.html";
         }
     </script>
 
