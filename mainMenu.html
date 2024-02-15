@@ -1,0 +1,53 @@
+<!-- Author: Matthew Korkola -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Main Menu</title>
+</head>
+<body>
+    <button onclick="redirectToTitle()">Title Screen</button>
+    <h1>Main Menu</h1> <br> <br>
+    <h2>Pick a Mode</h2>
+
+    <button onclick="redirectToMode('30 Random', false)">30 Random (No Timer)</button>
+    <button onclick="redirectToMode('30 Random', true)">30 Random (Timer)</button> <br>
+    <button onclick="redirectToMode('Europe', false)">Europe (No Timer)</button>
+    <button onclick="redirectToMode('Europe', true)">Europe (Timer)</button> <br>
+    <button onclick="redirectToMode('Asia', false)">Asia (No Timer)</button>
+    <button onclick="redirectToMode('Asia', true)">Asia (Timer)</button> <br>
+    <button onclick="redirectToMode('Africa', false)">Africa (No Timer)</button>
+    <button onclick="redirectToMode('Africa', true)">Africa (Timer)</button> <br>
+    <button onclick="redirectToMode('The Americas and Oceania', false)">The Americas and Oceania (No Timer)</button>
+    <button onclick="redirectToMode('The Americas and Oceania', true)">The Americas and Oceania (Timer)</button> <br>
+    <button onclick="redirectToMode('All Countries', false)">All Countries (No Timer)</button>
+    <button onclick="redirectToMode('All Countries', true)">All Countries (Timer)</button> <br> <br> <br> <br>
+    <button onclick="redirectToFlags()">Flag Archive</button> <br>
+    <button onclick="redirectToHighScores()">High Scores</button> <br>
+
+
+    <script>
+        function redirectToMode(region, withTimer) {
+            localStorage.setItem('region', region);
+            if (!withTimer) {
+            	window.location.href = "quiz.html";
+            }
+            else {
+            	window.location.href = "quizTimed.html";
+            }
+            
+        }
+        function redirectToFlags() {
+        	window.location.href = "flagArchive.html";
+        }
+        function redirectToHighScores() {
+            window.location.href = "highScores.html";
+        }
+        function redirectToTitle() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

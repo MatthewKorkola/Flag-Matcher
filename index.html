@@ -1,4 +1,3 @@
-<!-- Author: Matthew Korkola -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,42 +6,7 @@
     <title>Flag Matcher</title>
 </head>
 <body>
-    <h1>Flag Matcher</h1> <br> <br>
-    <h2>Pick a Mode</h2>
-
-    <button onclick="redirectToMode('30 Random', false)">30 Random (No Timer)</button>
-    <button onclick="redirectToMode('30 Random', true)">30 Random (Timer)</button> <br>
-    <button onclick="redirectToMode('Europe', false)">Europe (No Timer)</button>
-    <button onclick="redirectToMode('Europe', true)">Europe (Timer)</button> <br>
-    <button onclick="redirectToMode('Asia', false)">Asia (No Timer)</button>
-    <button onclick="redirectToMode('Asia', true)">Asia (Timer)</button> <br>
-    <button onclick="redirectToMode('Africa', false)">Africa (No Timer)</button>
-    <button onclick="redirectToMode('Africa', true)">Africa (Timer)</button> <br>
-    <button onclick="redirectToMode('The Americas and Oceania', false)">The Americas and Oceania (No Timer)</button>
-    <button onclick="redirectToMode('The Americas and Oceania', true)">The Americas and Oceania (Timer)</button> <br>
-    <button onclick="redirectToMode('All Countries', false)">All Countries (No Timer)</button>
-    <button onclick="redirectToMode('All Countries', true)">All Countries (Timer)</button> <br> <br> <br> <br>
-    <button onclick="redirectToFlags()">Flag Archive</button> <br>
-    <button onclick="redirectToPersonalRecords()">Personal Records</button> <br>
-    <button onclick="redirectToLeaderboards()">Leaderboards</button> <br>
-    <button onclick="logout()">Logout</button>
-
-
-    <script>
-        function redirectToMode(region, withTimer) {
-            localStorage.setItem('region', region);
-            if (!withTimer) {
-            	window.location.href = "quiz.html";
-            }
-            else {
-            	window.location.href = "quizTimed.html";
-            }
-            
-        }
-        function redirectToFlags() {
-        	window.location.href = "flagArchive.html";
-        }
-    </script>
-
+    <h2>Welcome to Flag Matcher!</h2>
+    <button onclick="window.location.href = 'mainMenu.html';">Play</button>
 </body>
 </html>

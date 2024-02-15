@@ -508,7 +508,7 @@ function redirectToResults() {
 
     var points = 1000 + (5 * correctAnswers) - (5 * incorrectAnswers) + (2 * maxStreak) + 
     (2 * quickAnswers) - (2 * closeCalls) + (100 / (fastestAnswer + 1)) - (5 * slowestAnswer) + 
-    (100 - (100 * (totalTime / (numberOfFlags * timeGiven))));
+    (50 - (50 * (totalTime / (numberOfFlags * timeGiven))));
 
     localStorage.setItem("correctAnswers", correctAnswers);
     localStorage.setItem("incorrectAnswers", incorrectAnswers);
