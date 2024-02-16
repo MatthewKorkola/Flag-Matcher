@@ -13,47 +13,48 @@ function saveArraysToLocalStorage(arrays) {
 
 // Function to insert specific values into 11 slots
 function insertValues() {
+  // Retrieve region from localStorage
+  const region = localStorage.getItem('region');
+  
   // Retrieve values from localStorage
   const points = localStorage.getItem("points") || "-1";
-  const correctAnswers = localStorage.getItem("correctAnswers") || "-1";
-  const incorrectAnswers = localStorage.getItem("incorrectAnswers") || "-1";
-  const streak = localStorage.getItem("streak") || "-1";
-  const maxStreak = localStorage.getItem("maxStreak") || "-1";
-  const correctAnswerPercentage = localStorage.getItem("correctAnswersPercentage") || "-1";
-  const quickAnswers = localStorage.getItem("quickAnswers") || "-1";
-  const closeCalls = localStorage.getItem("closeCalls") || "-1";
-  const fastestAnswer = localStorage.getItem("fastestAnswer") || "-1";
-  const slowestAnswer = localStorage.getItem("slowestAnswer") || "-1";
-  const totalTime = localStorage.getItem("totalTime") || "-1";
 
   // Create the new array
-  const newArray = [points, correctAnswers, incorrectAnswers, streak, maxStreak, correctAnswerPercentage, quickAnswers, closeCalls, fastestAnswer, slowestAnswer, totalTime];
+  const newArray = [
+    points,
+    localStorage.getItem("correctAnswers") || "-1",
+    localStorage.getItem("incorrectAnswers") || "-1",
+    localStorage.getItem("streak") || "-1",
+    localStorage.getItem("maxStreak") || "-1",
+    localStorage.getItem("correctAnswersPercentage") || "-1",
+    localStorage.getItem("quickAnswers") || "-1",
+    localStorage.getItem("closeCalls") || "-1",
+    localStorage.getItem("fastestAnswer") || "-1",
+    localStorage.getItem("slowestAnswer") || "-1",
+    localStorage.getItem("totalTime") || "-1"
+  ];
 
-  // Retrieve the current arrays from localStorage
-  let arrays = getArraysFromLocalStorage();
+  // Retrieve the current arrays from localStorage for the current region
+  let arrays = JSON.parse(localStorage.getItem(region)) || [];
 
-  // Find the index where the new array should be inserted
+  // Find the index where the new array should be inserted based on points
   let insertIndex = 0;
-  while (insertIndex < arrays.length && newArray[0] < arrays[insertIndex][0]) {
+  while (insertIndex < arrays.length && parseInt(newArray[0]) < parseInt(arrays[insertIndex][0])) {
     insertIndex++;
   }
 
-  // Shift down arrays starting from the last one
-  for (let i = arrays.length - 1; i > insertIndex; i--) {
-    arrays[i] = arrays[i - 1];
-  }
-
   // Insert the new array into its appropriate spot
-  arrays[insertIndex] = newArray;
+  arrays.splice(insertIndex, 0, newArray);
 
   // If there are more than 5 arrays, remove the last one
   if (arrays.length > 5) {
     arrays.pop();
   }
 
-  // Save the updated arrays to localStorage and display them
-  saveArraysToLocalStorage(arrays);
+  // Save the updated arrays to localStorage
+  localStorage.setItem(region, JSON.stringify(arrays));
 }
+
 
 // Insert values when this script is loaded
 insertValues();

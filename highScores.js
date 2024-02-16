@@ -1,5 +1,15 @@
 // highScores.js
 
+// Define arrays for each region
+let regionArrays = {
+  "30 Random": [],
+  "Europe": [],
+  "Asia": [],
+  "Africa": [],
+  "The Americas and Oceania": [],
+  "All Countries": []
+};
+
 // Function to retrieve arrays from local storage
 function getArraysFromLocalStorage() {
   const arrays = JSON.parse(localStorage.getItem('arrays')) || [];
@@ -16,22 +26,38 @@ function displayArrays(arrays) {
   const arraysDiv = document.getElementById('arrays');
   arraysDiv.innerHTML = ''; // Clear previous content
 
-  arrays.forEach((array, index) => {
+  // Loop through each array and display it
+  for (let index = 0; index < 5; index++) {
     const rank = index + 1;
     const arrayDiv = document.createElement('div');
     arrayDiv.textContent = `Rank ${rank}:     `;
-    array.forEach((value, i) => {
-      const label = getLabelForIndex(i);
-      const formattedValue = label ? `${label}: ${value === '-1' ? '-' : value}` : value;
-      const valueSpan = document.createElement('span');
-      valueSpan.textContent = formattedValue;
-      arrayDiv.appendChild(valueSpan);
-      if (i !== array.length - 1) {
-        arrayDiv.appendChild(document.createTextNode(', '));
+    
+    // If the array exists in the provided arrays, display its values
+    if (index < arrays.length) {
+      arrays[index].forEach((value, i) => {
+        const label = getLabelForIndex(i);
+        const formattedValue = label ? `${label}: ${value === '-1' ? '-' : value}` : value;
+        const valueSpan = document.createElement('span');
+        valueSpan.textContent = formattedValue;
+        arrayDiv.appendChild(valueSpan);
+        if (i !== arrays[index].length - 1) {
+          arrayDiv.appendChild(document.createTextNode(', '));
+        }
+      });
+    } else {
+      // If the array doesn't exist, display dashes for each value
+      for (let i = 0; i < 11; i++) {
+        const valueSpan = document.createElement('span');
+        valueSpan.textContent = '-';
+        arrayDiv.appendChild(valueSpan);
+        if (i !== 10) {
+          arrayDiv.appendChild(document.createTextNode(', '));
+        }
       }
-    });
+    }
+    
     arraysDiv.appendChild(arrayDiv);
-  });
+  }
 }
 
 // Helper function to get label for each index
@@ -66,23 +92,40 @@ function getLabelForIndex(index) {
 
 // Function to handle clearing data
 function clearData() {
-  let emptyArrays = [];
-  for (let i = 0; i < 5; i++) {
-    emptyArrays.push(['-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1']);
-  }
-  saveArraysToLocalStorage(emptyArrays);
-  displayArrays(emptyArrays);
+  // Retrieve the currently selected region
+  const selectedRegion = document.getElementById('regionDropdown').value;
+  
+  // Clear data for the selected region from regionArrays
+  regionArrays[selectedRegion] = [];
+
+  // Save the updated regionArrays to localStorage
+  saveArraysToLocalStorage(regionArrays);
+
+  // Clear data for the selected region from localStorage
+  localStorage.removeItem(selectedRegion);
+
+  // Display the cleared arrays for the selected region
+  displayArrays(regionArrays[selectedRegion]);
 }
 
 // Initial setup
 let arrays = getArraysFromLocalStorage();
 if (arrays.length === 0) {
-  arrays = [
-    ['-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1'],
-    ['-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1'],
-    ['-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1'],
-    ['-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1'],
-    ['-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1']
-  ];
+  // Initialize regionArrays with empty arrays
+  Object.keys(regionArrays).forEach(region => {
+    for (let i = 0; i < 5; i++) {
+      regionArrays[region].push(['-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1', '-1']);
+    }
+  });
+} else {
+  // If arrays are already present in localStorage, update regionArrays
+  Object.keys(regionArrays).forEach(region => {
+    regionArrays[region] = arrays[region] || [];
+  });
 }
-displayArrays(arrays);
+
+// Display initial arrays for the default region
+displayArrays(regionArrays["30 Random"]);
+
+// Event listener for clear button
+document.getElementById('clearButton').addEventListener('click', clearData);

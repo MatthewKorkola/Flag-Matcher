@@ -9,13 +9,39 @@
 
 <button onclick="window.location.href = 'mainMenu.html';">Main Menu</button>
 
-<h2>High Scores</h2>
+<h2>High Scores (Timed Only)</h2>
 
-<div id="arrays"></div>
+<!-- Dropdown menu for selecting the region -->
+<select id="regionDropdown" onchange="updateHighScores()">
+  <option value="30 Random">30 Random</option>
+  <option value="Europe">Europe</option>
+  <option value="Asia">Asia</option>
+  <option value="Africa">Africa</option>
+  <option value="The Americas and Oceania">The Americas and Oceania</option>
+  <option value="All Countries">All Countries</option>
+</select>
+
+<h3>Top 5:</h3>
+
+<div id="arrays"></div> <br> <br> <br> <br>
 
 <button id="clearButton">Clear Data</button>
 
 <script src="highScores.js"></script>
+<script>
+// Function to update high scores based on selected region
+function updateHighScores() {
+  const selectedRegion = document.getElementById('regionDropdown').value;
+  const regionData = JSON.parse(localStorage.getItem(selectedRegion)) || [];
+  displayArrays(regionData);
+}
+
+// Initial setup
+updateHighScores();
+
+// Event listener for clear button
+document.getElementById('clearButton').addEventListener('click', clearData);
+</script>
 
 </body>
 </html>
