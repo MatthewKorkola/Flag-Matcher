@@ -1,0 +1,104 @@
+/* Reset default styles */
+body, h1, h2, p, div, select, button, img {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #80a9d1;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.select-container {
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4682b4;
+    border: none;
+    color: #ADD8E6;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4169e1;
+}
+
+label {
+    color: black;
+    font-size: 18px;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px 20px; /* Adjust as needed */
+    margin-right: 10px; /* Example margin for spacing */
+}
+
+select:hover {
+    background-color: darkgray;
+}
+
+#flags-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.flag-container {
+    display: inline-block;
+    margin-right: 250px; /* Add margin between flags */
+    margin-bottom: 200px; /* Add margin below each flag */
+    text-align: center;
+    position: relative;
+}
+
+.flag-container img {
+    width: 200px; /* Set a fixed width for the flags */
+    height: 120px; /* Set a fixed height for the flags */
+    /* Remove border-radius to ensure sharp edges */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.flag-container p {
+    margin-top: 120px; /* Adjust the top margin as needed */
+    margin-right: 50px;
+    font-size: 18px;
+    color: black;
+    text-align: center; /* Center the caption */
+    width: 150px; /* Ensure the caption takes the full width */
+    position: absolute;
+    transform: translateX(17%); /* Adjust to center the caption */
+    overflow-wrap: break-word; /* Wrap words when they exceed the width of the container */
+}
+
+
+.flag-outline {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 20px;
+    font-weight: bold;
+    outline: 2px solid black;
+}

@@ -236,15 +236,37 @@ function showFlags() {
 
     // Loop through countries and create flag elements
     countries.forEach(function(country) {
-        var flagContainer = document.createElement("div");
+         var flagContainer = document.createElement("div");
+        flagContainer.classList.add("flag-container"); // Add class for flag container
+
         var flagElement = document.createElement("img");
-        var captionElement = document.createElement("p");
-        
         flagElement.src = "Flags/Flag_of_" + country + ".svg.png";
         flagElement.alt = country;
+        flagElement.classList.add("flag-outline"); // Add class for black outline
         
+        var captionElement = document.createElement("p");
         captionElement.textContent = country.replace(/_/g, ' '); // Replace underscores with spaces
-        
+
+        // Adjust width and height based on country
+        var flagWidth = 200;
+        var flagHeight = 120;
+        if (country === "Vatican_City" || country === "Switzerland") {
+            flagWidth = 120;
+        }
+        flagElement.style.width = flagWidth + "px";
+        flagElement.style.height = flagHeight + "px";
+
+        // Calculate the left position to center the flag
+        var leftPosition = (200 - flagWidth) / 2; // Assuming the standard flag width is 200px
+
+        // Adjust left position for square flags
+        flagContainer.style.left = leftPosition + "px";
+
+        if (flagWidth === 120) {
+             captionElement.style.transform = "translateX(-54px)";
+        }
+        captionElement.style.left = leftPosition + "px";
+
         flagContainer.appendChild(flagElement);
         flagContainer.appendChild(captionElement);
         

@@ -1,0 +1,95 @@
+body {
+    background-color: #80a9d1;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.title-button {
+    background-color: #4682b4;
+    border: none;
+    color: #ADD8E6;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.title-button:hover {
+    background-color: #4169e1;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2.mode-text {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.button-group div {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.button-group div button {
+    background-color: #4682b4;
+    border: none;
+    color: #ADD8E6;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+}
+
+.button-group div button:hover {
+    background-color: #4169e1;
+}
+
+.utility-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.utility-button {
+    background-color: #4682b4;
+    border: none;
+    color: #ADD8E6;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+}
+
+.utility-button:hover {
+    background-color: #4169e1;
+}

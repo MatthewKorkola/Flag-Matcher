@@ -5,41 +5,50 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Main Menu</title>
+    <link rel="stylesheet" href="mainMenu.css">
 </head>
 <body>
-    <button onclick="redirectToTitle()">Title Screen</button>
-    <h1>Main Menu</h1> <br> <br>
-    <h2>Pick a Mode</h2>
+    <button class="title-button" onclick="redirectToTitle()">Title Screen</button>
+    <h1>Main Menu</h1>
+    <h2 class="mode-text">Pick a Mode</h2>
 
-    <button onclick="redirectToMode('30 Random', false)">30 Random (No Timer)</button>
-    <button onclick="redirectToMode('30 Random', true)">30 Random (Timer)</button> <br>
-    <button onclick="redirectToMode('Europe', false)">Europe (No Timer)</button>
-    <button onclick="redirectToMode('Europe', true)">Europe (Timer)</button> <br>
-    <button onclick="redirectToMode('Asia', false)">Asia (No Timer)</button>
-    <button onclick="redirectToMode('Asia', true)">Asia (Timer)</button> <br>
-    <button onclick="redirectToMode('Africa', false)">Africa (No Timer)</button>
-    <button onclick="redirectToMode('Africa', true)">Africa (Timer)</button> <br>
-    <button onclick="redirectToMode('The Americas and Oceania', false)">The Americas and Oceania (No Timer)</button>
-    <button onclick="redirectToMode('The Americas and Oceania', true)">The Americas and Oceania (Timer)</button> <br>
-    <button onclick="redirectToMode('All Countries', false)">All Countries (No Timer)</button>
-    <button onclick="redirectToMode('All Countries', true)">All Countries (Timer)</button> <br> <br> <br> <br>
-    <button onclick="redirectToFlags()">Flag Archive</button> <br>
-    <button onclick="redirectToHighScores()">High Scores</button> <br>
+    <div class="button-group">
+        <div>
+            <button onclick="redirectToMode('30 Random', false)">30 Random (No Timer)</button>
+            <button onclick="redirectToMode('Europe', false)">Europe (No Timer)</button>
+            <button onclick="redirectToMode('Asia', false)">Asia (No Timer)</button>
+            <button onclick="redirectToMode('Africa', false)">Africa (No Timer)</button>
+            <button onclick="redirectToMode('The Americas and Oceania', false)">The Americas and Oceania (No Timer)</button>
+            <button onclick="redirectToMode('All Countries', false)">All Countries (No Timer)</button>
+        </div>
+        <div>
+            <button onclick="redirectToMode('30 Random', true)">30 Random (Timer)</button>
+            <button onclick="redirectToMode('Europe', true)">Europe (Timer)</button>
+            <button onclick="redirectToMode('Asia', true)">Asia (Timer)</button>
+            <button onclick="redirectToMode('Africa', true)">Africa (Timer)</button>
+            <button onclick="redirectToMode('The Americas and Oceania', true)">The Americas and Oceania (Timer)</button>
+            <button onclick="redirectToMode('All Countries', true)">All Countries (Timer)</button>
+        </div>
+    </div>
 
+    <div class="utility-buttons">
+        <button class="utility-button" onclick="redirectToFlags()">Flag Archive</button>
+        <button class="utility-button" onclick="redirectToHighScores()">High Scores</button>
+    </div>
 
     <script>
         function redirectToMode(region, withTimer) {
             localStorage.setItem('region', region);
             if (!withTimer) {
-            	window.location.href = "quiz.html";
+                window.location.href = "quiz.html";
             }
             else {
-            	window.location.href = "quizTimed.html";
+                window.location.href = "quizTimed.html";
             }
-            
+
         }
         function redirectToFlags() {
-        	window.location.href = "flagArchive.html";
+            window.location.href = "flagArchive.html";
         }
         function redirectToHighScores() {
             window.location.href = "highScores.html";

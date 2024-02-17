@@ -94,18 +94,24 @@ function getLabelForIndex(index) {
 function clearData() {
   // Retrieve the currently selected region
   const selectedRegion = document.getElementById('regionDropdown').value;
+
+  // Prompt the user for confirmation
+  const confirmation = confirm("You chose to clear data for this mode. Are you sure?");
   
-  // Clear data for the selected region from regionArrays
-  regionArrays[selectedRegion] = [];
+  if (confirmation) {
+    // Clear data for the selected region from regionArrays
+    regionArrays[selectedRegion] = [];
 
-  // Save the updated regionArrays to localStorage
-  saveArraysToLocalStorage(regionArrays);
+    // Save the updated regionArrays to localStorage
+    saveArraysToLocalStorage(regionArrays);
 
-  // Clear data for the selected region from localStorage
-  localStorage.removeItem(selectedRegion);
+    // Clear data for the selected region from localStorage
+    localStorage.removeItem(selectedRegion);
 
-  // Display the cleared arrays for the selected region
-  displayArrays(regionArrays[selectedRegion]);
+    // Display the cleared arrays for the selected region
+    displayArrays(regionArrays[selectedRegion]);
+  }
+  
 }
 
 // Initial setup

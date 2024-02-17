@@ -4,17 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Flag Archive</title>
+    <link rel="stylesheet" href="flagArchive.css">
 </head>
 <body>
-	<button onclick="redirectToMainMenu()">Main Menu</button> <br> <br>
-    <label for="region">Select a region:</label>
-    <select id="region" onchange="showFlags()">
-    	<option value="All">All Countries</option>
-        <option value="Europe">Europe</option>
-        <option value="Asia">Asia</option>
-        <option value="Africa">Africa</option>
-        <option value="AmericasAndOceania">Americas and Oceania</option>
-    </select>
+    <div class="container">
+        <button onclick="redirectToMainMenu()">Main Menu</button> <br> <br>
+        <div class="select-container">
+            <label for="region">Select a region:</label>
+            <select id="region" onchange="showFlags()">
+                <option value="All">All Countries</option>
+                <option value="Europe">Europe</option>
+                <option value="Asia">Asia</option>
+                <option value="Africa">Africa</option>
+                <option value="AmericasAndOceania">Americas and Oceania</option>
+            </select>
+        </div>
+    </div>
+
     <div id="flags-container"></div>
 
     <script src="flagArchive.js"></script>
