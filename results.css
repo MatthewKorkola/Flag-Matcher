@@ -47,3 +47,9 @@ div {
     margin-top: 20px;
 }
 
+.golden-text {
+    color: gold;
+    text-shadow: 2px 2px 2px black;
+}
+
+

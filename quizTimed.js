@@ -557,6 +557,9 @@ function redirectToResults() {
     (2 * quickAnswers) - (2 * closeCalls) + (100 / (fastestAnswer + 1)) - (5 * slowestAnswer) + 
     (50 - (50 * (totalTime / (numberOfFlags * timeGiven))));
 
+    // Allow the user to store data again.
+    localStorage.removeItem('dataStored');
+
     localStorage.setItem("correctAnswers", correctAnswers);
     localStorage.setItem("incorrectAnswers", incorrectAnswers);
     localStorage.setItem("streak", currentStreak);

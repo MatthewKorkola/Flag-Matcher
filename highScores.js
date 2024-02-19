@@ -54,6 +54,8 @@ function displayArrays(arrays) {
       rankCell.classList.add('silver');
     } else if (rank === 3) {
       rankCell.classList.add('bronze');
+    } else if (rank === 4 || rank === 5) {
+      rankCell.classList.add('otherRanks');
     }
     arrayRow.appendChild(rankCell);
 
@@ -123,7 +125,7 @@ function clearData() {
   const selectedRegion = document.getElementById('regionDropdown').value;
 
   // Prompt the user for confirmation
-  const confirmation = confirm("You chose to clear data for this mode. Are you sure?");
+  const confirmation = confirm("Clear data for this mode?");
   
   if (confirmation) {
     // Clear data for the selected region from regionArrays

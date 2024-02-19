@@ -57,6 +57,11 @@
         var h1Element = document.querySelector('h1');
         h1Element.textContent = "Final Results (Timer) - " + region;
 
+        var resultsMessageElement = document.getElementById("resultsMessage");
+        if (resultsMessageElement.textContent.includes("A perfect result! Incredible!")) {
+            resultsMessageElement.classList.add("golden-text");
+        }
+
     </script>
 
 </body>

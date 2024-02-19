@@ -15,6 +15,11 @@ function saveArraysToLocalStorage(arrays) {
 function insertValues() {
   // Retrieve region from localStorage
   const region = localStorage.getItem('region');
+
+  // Check if the data has already been stored
+  if (localStorage.getItem('dataStored') === 'true') {
+    return; // Exit the function if data has already been stored
+  }
   
   // Retrieve values from localStorage
   const points = localStorage.getItem("points") || "-1";
@@ -43,6 +48,14 @@ function insertValues() {
     insertIndex++;
   }
 
+  if (insertIndex >= 0 && insertIndex <= 4) {
+    // Retrieve the existing message or set it to an empty string if it doesn't exist
+    let existingMessage = document.getElementById('resultsMessage').textContent || '';
+
+    // Display a message to the player
+    document.getElementById('resultsMessage').textContent = existingMessage + " High scores updated!";
+  }
+
   // Insert the new array into its appropriate spot
   arrays.splice(insertIndex, 0, newArray);
 
@@ -53,6 +66,9 @@ function insertValues() {
 
   // Save the updated arrays to localStorage
   localStorage.setItem(region, JSON.stringify(arrays));
+
+  // Mark data as stored to prevent multiple insertions
+  localStorage.setItem('dataStored', 'true');
 }
 
 

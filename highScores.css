@@ -151,4 +151,10 @@ label {
                0.5px 0.5px 0 black;
 }
 
-
+.otherRanks {
+  color: white;
+  text-shadow: -0.5px -0.5px 0 black,  
+               0.5px -0.5px 0 black,
+              -0.5px 0.5px 0 black, 
+               0.5px 0.5px 0 black;
+}

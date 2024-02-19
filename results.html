@@ -44,6 +44,11 @@
         var h1Element = document.querySelector('h1');
         h1Element.textContent = "Final Results (No Timer) - " + region;
 
+        var resultsMessageElement = document.getElementById("resultsMessage");
+        if (resultsMessageElement.textContent.trim() === "A perfect result! Incredible!") {
+            resultsMessageElement.classList.add("golden-text");
+        }
+
     </script>
 
 </body>
