@@ -1,5 +1,3 @@
-// highScores.js
-
 // Define arrays for each region
 let regionArrays = {
   "30 Random": [],
@@ -26,38 +24,67 @@ function displayArrays(arrays) {
   const arraysDiv = document.getElementById('arrays');
   arraysDiv.innerHTML = ''; // Clear previous content
 
-  // Loop through each array and display it
+  // Create a table element
+  const table = document.createElement('table');
+  table.classList.add('arrays-table');
+
+  // Create the table header (topmost row)
+  const headerRow = document.createElement('tr');
+  const labels = ["Rank", "Points", "Correct Answers", "Incorrect Answers", "Ending Streak", "Max Streak", 
+                  "Correct Answer Percentage", "Quick Answers", "Close Calls", "Fastest Answer(s)", 
+                  "Slowest Answer(s)", "Total Time(s)"];
+  labels.forEach(label => {
+    const th = document.createElement('th');
+    th.textContent = label;
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+
+  // Loop through each array and display it in the table
   for (let index = 0; index < 5; index++) {
     const rank = index + 1;
-    const arrayDiv = document.createElement('div');
-    arrayDiv.textContent = `Rank ${rank}:     `;
+    const arrayRow = document.createElement('tr');
+
+    // Add the rank to the row
+    const rankCell = document.createElement('td');
+    rankCell.textContent = rank;
+    if (rank === 1) {
+      rankCell.classList.add('gold');
+    } else if (rank === 2) {
+      rankCell.classList.add('silver');
+    } else if (rank === 3) {
+      rankCell.classList.add('bronze');
+    }
+    arrayRow.appendChild(rankCell);
+
+    // Add lines between categories
+    if (index === 0) {
+      arrayRow.classList.add('header-row');
+    }
     
     // If the array exists in the provided arrays, display its values
     if (index < arrays.length) {
       arrays[index].forEach((value, i) => {
         const label = getLabelForIndex(i);
-        const formattedValue = label ? `${label}: ${value === '-1' ? '-' : value}` : value;
-        const valueSpan = document.createElement('span');
-        valueSpan.textContent = formattedValue;
-        arrayDiv.appendChild(valueSpan);
-        if (i !== arrays[index].length - 1) {
-          arrayDiv.appendChild(document.createTextNode(', '));
-        }
+        const formattedValue = label ? `${value === '-1' ? '-' : value}` : value;
+        const valueCell = document.createElement('td');
+        valueCell.textContent = formattedValue;
+        arrayRow.appendChild(valueCell);
       });
     } else {
       // If the array doesn't exist, display dashes for each value
       for (let i = 0; i < 11; i++) {
-        const valueSpan = document.createElement('span');
-        valueSpan.textContent = '-';
-        arrayDiv.appendChild(valueSpan);
-        if (i !== 10) {
-          arrayDiv.appendChild(document.createTextNode(', '));
-        }
+        const valueCell = document.createElement('td');
+        valueCell.textContent = '-';
+        arrayRow.appendChild(valueCell);
       }
     }
     
-    arraysDiv.appendChild(arrayDiv);
+    table.appendChild(arrayRow);
   }
+
+  // Append the table to the arraysDiv
+  arraysDiv.appendChild(table);
 }
 
 // Helper function to get label for each index

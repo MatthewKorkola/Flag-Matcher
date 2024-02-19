@@ -277,6 +277,10 @@ var totalTime = 0;
 
 var answerSelected = false;
 
+var flagWidth = 200;
+
+var flagHeight = 120;
+
 // Function to start the timer
 function startTimer(correctCountry) {
     timeLeft = 5; // Set the initial time limit to 5 seconds
@@ -292,6 +296,14 @@ function startTimer(correctCountry) {
             timeLeft = 0
         }
         timerElement.textContent = "Time left: " + timeLeft.toFixed(2) + "s";
+
+        // Change the color of the timer text if less than 1.4 seconds remaining
+        if (timeLeft < 1.4) {
+            timerElement.style.textShadow = "0 0 3px firebrick";
+        } else {
+            // Reset text color and shadow for other cases
+            timerElement.style.textShadow = ""; // Reset to default
+        }
 
         // If time runs out, handle it as an incorrect answer and reset the timer
         if (timeLeft <= 0) {
@@ -384,12 +396,24 @@ function displayFlagAndOptions() {
             checkAnswer(i === correctPosition, currentCountry);
         };
         options.appendChild(option);
+        option.classList.add("option");
     }
 
     // Display the flag
     var flagImage = document.getElementById("flag");
     flagImage.src = "Flags/Flag_of_" + currentCountry + ".svg.png";
     flagImage.alt = currentCountry;
+
+    // Set flag dimensions based on the country
+    flagWidth = 200; // Default width
+
+    if (currentCountry === "Switzerland" || currentCountry === "Vatican_City") {
+        flagWidth = 120; // Adjusted width for Switzerland and Vatican City
+    }
+
+    // Apply the dimensions to the flag image
+    flagImage.style.width = flagWidth + "px";
+    flagImage.style.height = flagHeight + "px";
 }
 
 // Function to check the user's answer
@@ -452,6 +476,29 @@ function displayMessage(message, duration) {
     var messageElement = document.getElementById("message");
     messageElement.textContent = message;
     messageElement.style.display = "block";
+
+    messageElement.style.color = "black";
+    messageElement.style.textShadow = "";
+
+    if (message.startsWith("Correct!")) {
+        messageElement.style.color = "rgb(218, 165, 32)"; // Gold color
+        messageElement.style.textShadow = "0 0 3px black";
+        if (message.includes("Quick!")) {
+            // Change color for "Quick!" if it appears after "Correct!"
+            messageElement.innerHTML = messageElement.innerHTML.replace("Quick!", `<span style="color: rgb(57, 255, 20); text-shadow: 0 0 3px black;">Quick!</span>`);
+        }
+        else if (message.includes("Close call!")) {
+            // Change color for "Close call!" if it appears after "Correct!"
+            messageElement.innerHTML = messageElement.innerHTML.replace("Close call!", `<span style="color: lightgray; text-shadow: 0 0 3px firebrick;">Close call!</span>`);
+        }
+    }
+    else {
+        // Reset text color for other messages
+        var incorrectIndex = message.indexOf("!") + 1; // Find the index of "!"
+        var incorrectPart = message.slice(0, incorrectIndex);
+        var restOfMessage = message.slice(incorrectIndex);
+        messageElement.innerHTML = `<span style="text-shadow: 0 0 3px firebrick;">${incorrectPart}</span>${restOfMessage}`;
+    }
 
     setTimeout(function () {
         messageElement.style.display = "none";

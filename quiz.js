@@ -260,6 +260,10 @@ var maxStreak = 0;
 
 var answerSelected = false;
 
+var flagWidth = 200;
+
+var flagHeight = 120;
+
 // Function to shuffle array elements randomly (Fisher-Yates shuffle algorithm)
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -327,13 +331,25 @@ function displayFlagAndOptions() {
             checkAnswer(i === correctPosition, currentCountry);
         };
         options.appendChild(option);
+        option.classList.add("option");
     }
 
     // Display the flag
     var flagImage = document.getElementById("flag");
     flagImage.src = "Flags/Flag_of_" + currentCountry + ".svg.png";
     flagImage.alt = currentCountry;
-}
+
+    // Set flag dimensions based on the country
+    flagWidth = 200; // Default width
+
+    if (currentCountry === "Switzerland" || currentCountry === "Vatican_City") {
+        flagWidth = 120; // Adjusted width for Switzerland and Vatican City
+    }
+
+    // Apply the dimensions to the flag image
+    flagImage.style.width = flagWidth + "px";
+    flagImage.style.height = flagHeight + "px";
+    }
 
 // Function to check the user's answer
 function checkAnswer(isCorrect, correctCountry) {
@@ -376,6 +392,20 @@ function displayMessage(message, duration) {
     var messageElement = document.getElementById("message");
     messageElement.textContent = message;
     messageElement.style.display = "block";
+
+    messageElement.style.color = "black"; // Set text color to gold
+    messageElement.style.textShadow = "";
+
+    if (message === "Correct!") {
+        messageElement.style.color = "rgb(218, 165, 32)"; // Set text color to gold
+        messageElement.style.textShadow = "0 0 3px black";
+    } else {
+        // Reset text color for other messages
+        var incorrectIndex = message.indexOf("!") + 1; // Find the index of "!"
+        var incorrectPart = message.slice(0, incorrectIndex);
+        var restOfMessage = message.slice(incorrectIndex);
+        messageElement.innerHTML = `<span style="text-shadow: 0 0 3px firebrick;">${incorrectPart}</span>${restOfMessage}`;
+    }
 
     setTimeout(function () {
         messageElement.style.display = "none";
