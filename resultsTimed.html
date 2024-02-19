@@ -1,11 +1,12 @@
+<!-- This page displays user results for timed quizzes. -->
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Final Results (Timer)</title>
-    <script src="updateHighScores.js" defer></script>
-    <link rel="stylesheet" href="resultsTimed.css">
+    <script src="JavaScript/updateHighScores.js" defer></script>
+    <link rel="stylesheet" href="CSS/resultsTimed.css">
 </head>
 <body>
 
@@ -50,10 +51,8 @@
             window.location.href = "mainMenu.html";
         }
 
-        // Retrieve region from localStorage
         var region = localStorage.getItem('region');
 
-        // Update the h1 tag to display the region
         var h1Element = document.querySelector('h1');
         h1Element.textContent = "Final Results (Timer) - " + region;
 

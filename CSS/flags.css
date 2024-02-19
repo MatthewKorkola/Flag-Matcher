@@ -1,0 +1,7 @@
+.flag {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 20px;
+    font-weight: bold;
+    outline: 2px solid black;
+}

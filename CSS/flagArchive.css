@@ -54,8 +54,8 @@ select {
     color: white;
     border: 1px solid gray;
     border-radius: 5px;
-    padding: 10px 20px; /* Adjust as needed */
-    margin-right: 10px; /* Example margin for spacing */
+    padding: 10px 20px;
+    margin-right: 10px;
 }
 
 select:hover {
@@ -69,29 +69,28 @@ select:hover {
 
 .flag-container {
     display: inline-block;
-    margin-right: 250px; /* Add margin between flags */
-    margin-bottom: 200px; /* Add margin below each flag */
+    margin-right: 250px;
+    margin-bottom: 200px;
     text-align: center;
     position: relative;
 }
 
 .flag-container img {
-    width: 200px; /* Set a fixed width for the flags */
-    height: 120px; /* Set a fixed height for the flags */
-    /* Remove border-radius to ensure sharp edges */
+    width: 200px;
+    height: 120px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .flag-container p {
-    margin-top: 120px; /* Adjust the top margin as needed */
+    margin-top: 120px;
     margin-right: 50px;
     font-size: 18px;
     color: black;
-    text-align: center; /* Center the caption */
-    width: 150px; /* Ensure the caption takes the full width */
+    text-align: center;
+    width: 150px;
     position: absolute;
-    transform: translateX(17%); /* Adjust to center the caption */
-    overflow-wrap: break-word; /* Wrap words when they exceed the width of the container */
+    transform: translateX(17%);
+    overflow-wrap: break-word;
 }
 
 

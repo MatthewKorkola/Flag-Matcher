@@ -1,209 +1,40 @@
 // Arrays to store country names
 var countriesEurope = [
-    "Albania",
-    "Andorra",
-    "Austria",
-    "Belarus",
-    "Belgium",
-    "Bosnia_and_Herzegovina",
-    "Bulgaria",
-    "Croatia",
-    "Cyprus",
-    "Czech_Republic",
-    "Denmark",
-    "Estonia",
-    "Finland",
-    "France",
-    "Georgia",
-    "Germany",
-    "Greece",
-    "Hungary",
-    "Iceland",
-    "Ireland",
-    "Italy",
-    "Latvia",
-    "Liechtenstein",
-    "Lithuania",
-    "Luxembourg",
-    "Malta",
-    "Moldova",
-    "Monaco",
-    "Montenegro",
-    "Netherlands",
-    "North_Macedonia",
-    "Norway",
-    "Poland",
-    "Portugal",
-    "Romania",
-    "Russia",
-    "San_Marino",
-    "Serbia",
-    "Slovakia",
-    "Slovenia",
-    "Spain",
-    "Sweden",
-    "Switzerland",
-    "Turkey",
-    "Ukraine",
-    "United_Kingdom",
-    "Vatican_City"
+    "Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia_and_Herzegovina", "Bulgaria", "Croatia",
+    "Cyprus", "Czech_Republic", "Denmark", "Estonia", "Finland", "France", "Georgia", "Germany",
+    "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania",
+    "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands", "North_Macedonia", "Norway",
+    "Poland", "Portugal", "Romania", "Russia", "San_Marino", "Serbia", "Slovakia", "Slovenia",
+    "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United_Kingdom", "Vatican_City"
 ];
 
 var countriesAfrica = [
-    "Algeria",
-    "Angola",
-    "Benin",
-    "Botswana",
-    "Burkina_Faso",
-    "Burundi",
-    "Cameroon",
-    "Cape_Verde",
-    "Central_African_Republic",
-    "Chad",
-    "Comoros",
-    "Democratic_Republic_of_the_Congo",
-    "Republic_of_the_Congo",
-    "Djibouti",
-    "Egypt",
-    "Equatorial_Guinea",
-    "Eritrea",
-    "Eswatini",
-    "Ethiopia",
-    "Gabon",
-    "Gambia",
-    "Ghana",
-    "Guinea",
-    "Guinea-Bissau",
-    "Ivory_Coast",
-    "Kenya",
-    "Lesotho",
-    "Liberia",
-    "Libya",
-    "Madagascar",
-    "Malawi",
-    "Mali",
-    "Mauritania",
-    "Mauritius",
-    "Morocco",
-    "Mozambique",
-    "Namibia",
-    "Niger",
-    "Nigeria",
-    "Rwanda",
-    "São_Tomé_and_Príncipe",
-    "Senegal",
-    "Seychelles",
-    "Sierra_Leone",
-    "Somalia",
-    "South_Africa",
-    "South_Sudan",
-    "Sudan",
-    "Tanzania",
-    "Togo",
-    "Tunisia",
-    "Uganda",
-    "Zambia",
-    "Zimbabwe"
+    "Algeria", "Angola", "Benin", "Botswana", "Burkina_Faso", "Burundi", "Cameroon", "Cape_Verde",
+    "Central_African_Republic", "Chad", "Comoros", "Democratic_Republic_of_the_Congo", "Republic_of_the_Congo",
+    "Djibouti", "Egypt", "Equatorial_Guinea", "Eritrea", "Eswatini", "Ethiopia", "Gabon", "Gambia",
+    "Ghana", "Guinea", "Guinea-Bissau", "Ivory_Coast", "Kenya", "Lesotho", "Liberia", "Libya",
+    "Madagascar", "Malawi", "Mali", "Mauritania", "Mauritius", "Morocco", "Mozambique", "Namibia",
+    "Niger", "Nigeria", "Rwanda", "São_Tomé_and_Príncipe", "Senegal", "Seychelles", "Sierra_Leone", "Somalia",
+    "South_Africa", "South_Sudan", "Sudan", "Tanzania", "Togo", "Tunisia", "Uganda", "Zambia", "Zimbabwe"
 ];
 
 var countriesAsia = [
-    "Afghanistan",
-    "Armenia",
-    "Azerbaijan",
-    "Bahrain",
-    "Bangladesh",
-    "Bhutan",
-    "Brunei",
-    "Cambodia",
-    "China",
-    "East_Timor",
-    "India",
-    "Indonesia",
-    "Iran",
-    "Iraq",
-    "Israel",
-    "Japan",
-    "Jordan",
-    "Kazakhstan",
-    "Kuwait",
-    "Kyrgyzstan",
-    "Laos",
-    "Lebanon",
-    "Malaysia",
-    "Maldives",
-    "Mongolia",
-    "Myanmar",
-    "Nepal",
-    "North_Korea",
-    "Oman",
-    "Pakistan",
-    "Philippines",
-    "Qatar",
-    "Saudi_Arabia",
-    "Singapore",
-    "South_Korea",
-    "Sri_Lanka",
-    "Syria",
-    "Taiwan",
-    "Tajikistan",
-    "Thailand",
-    "Turkmenistan",
-    "United_Arab_Emirates",
-    "Uzbekistan",
-    "Vietnam",
-    "Yemen"
+    "Afghanistan", "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Bhutan", "Brunei", "Cambodia",
+    "China", "East_Timor", "India", "Indonesia", "Iran", "Iraq", "Israel", "Japan", "Jordan",
+    "Kazakhstan", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Malaysia", "Maldives", "Mongolia",
+    "Myanmar", "Nepal", "North_Korea", "Oman", "Pakistan", "Philippines", "Qatar", "Saudi_Arabia",
+    "Singapore", "South_Korea", "Sri_Lanka", "Syria", "Taiwan", "Tajikistan", "Thailand",
+    "Turkmenistan", "United_Arab_Emirates", "Uzbekistan", "Vietnam", "Yemen"
 ];
 
 var countriesAmericasAndOceania = [
-    "Antigua_and_Barbuda",
-    "Argentina",
-    "Australia",
-    "Bahamas",
-    "Barbados",
-    "Belize",
-    "Bolivia",
-    "Brazil",
-    "Canada",
-    "Chile",
-    "Colombia",
-    "Costa_Rica",
-    "Cuba",
-    "Dominica",
-    "Dominican_Republic",
-    "Ecuador",
-    "El_Salvador",
-    "Federated_States_of_Micronesia",
-    "Fiji",
-    "Grenada",
-    "Guatemala",
-    "Guyana",
-    "Haiti",
-    "Honduras",
-    "Jamaica",
-    "Kiribati",
-    "Marshall_Islands",
-    "Mexico",
-    "Nauru",
-    "New_Zealand",
-    "Nicaragua",
-    "Palau",
-    "Panama",
-    "Papua_New_Guinea",
-    "Paraguay",
-    "Peru",
-    "Saint_Kitts_and_Nevis",
-    "Saint_Lucia",
-    "Saint_Vincent_and_the_Grenadines",
-    "Samoa",
-    "Solomon_Islands",
-    "Suriname",
-    "Tonga",
-    "Trinidad_and_Tobago",
-    "Tuvalu",
-    "United_States",
-    "Uruguay",
-    "Vanuatu",
-    "Venezuela"
+    "Antigua_and_Barbuda", "Argentina", "Australia", "Bahamas", "Barbados", "Belize", "Bolivia", "Brazil",
+    "Canada", "Chile", "Colombia", "Costa_Rica", "Cuba", "Dominica", "Dominican_Republic", "Ecuador",
+    "El_Salvador", "Federated_States_of_Micronesia", "Fiji", "Grenada", "Guatemala", "Guyana", "Haiti",
+    "Honduras", "Jamaica", "Kiribati", "Marshall_Islands", "Mexico", "Nauru", "New_Zealand", "Nicaragua",
+    "Palau", "Panama", "Papua_New_Guinea", "Paraguay", "Peru", "Saint_Kitts_and_Nevis", "Saint_Lucia",
+    "Saint_Vincent_and_the_Grenadines", "Samoa", "Solomon_Islands", "Suriname", "Tonga",
+    "Trinidad_and_Tobago", "Tuvalu", "United_States", "Uruguay", "Vanuatu", "Venezuela"
 ];
 
 // Choose countries array based on selected region
@@ -297,7 +128,7 @@ function startTimer(correctCountry) {
         }
         timerElement.textContent = "Time left: " + timeLeft.toFixed(2) + "s";
 
-        // Change the color of the timer text if less than 1.4 seconds remaining
+        // Change the color of the timer text if less than 1.4 seconds remain
         if (timeLeft < 1.4) {
             timerElement.style.textShadow = "0 0 3px firebrick";
         } else {
@@ -338,7 +169,7 @@ function shuffleArray(array) {
 // Function to display a new flag and options
 function displayFlagAndOptions() {
     if (!countries || countries.length === 0) {
-        // All flags have been seen, return to the main menu
+        // All flags have been seen
         redirectToResults();
         return;
     }
@@ -418,9 +249,8 @@ function displayFlagAndOptions() {
 
 // Function to check the user's answer
 function checkAnswer(isCorrect, correctCountry) {
-    if (!answerSelected) { // Check if an answer has already been selected
-        answerSelected = true; // Set flag to true once an answer is selected
-        // Disable option buttons
+    if (!answerSelected) {
+        answerSelected = true;
         disableOptionButtons();
 
         totalTime += timeGiven - timeLeft;
@@ -464,11 +294,7 @@ function checkAnswer(isCorrect, correctCountry) {
             displayMessage("Incorrect! The correct country is: " + correctCountry.replace(/_/g, ' '), 3000);
             setTimeout(displayFlagAndOptions, 3000);
         }
-
-        // Display the next flag and options
-        //displayFlagAndOptions();
     }
-    
 }
 
 // Function to display a message on the screen for a specified duration
@@ -481,7 +307,7 @@ function displayMessage(message, duration) {
     messageElement.style.textShadow = "";
 
     if (message.startsWith("Correct!")) {
-        messageElement.style.color = "rgb(218, 165, 32)"; // Gold color
+        messageElement.style.color = "rgb(218, 165, 32)";
         messageElement.style.textShadow = "0 0 3px black";
         if (message.includes("Quick!")) {
             // Change color for "Quick!" if it appears after "Correct!"
@@ -494,7 +320,7 @@ function displayMessage(message, duration) {
     }
     else {
         // Reset text color for other messages
-        var incorrectIndex = message.indexOf("!") + 1; // Find the index of "!"
+        var incorrectIndex = message.indexOf("!") + 1;
         var incorrectPart = message.slice(0, incorrectIndex);
         var restOfMessage = message.slice(incorrectIndex);
         messageElement.innerHTML = `<span style="text-shadow: 0 0 3px firebrick;">${incorrectPart}</span>${restOfMessage}`;
@@ -521,7 +347,7 @@ function disableOptionButtons() {
     });
 }
 
-// Function to return to the main menu
+// Function to advance to the results page
 function redirectToResults() {
     var correctAnswersPercentage = (correctAnswers / (correctAnswers + incorrectAnswers)) * 100;
     var resultsMessage;

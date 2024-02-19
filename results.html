@@ -1,10 +1,11 @@
+<!-- This page displays user results for non-timed quizzes. -->
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Final Results (No Timer)</title>
-    <link rel="stylesheet" href="results.css">
+    <link rel="stylesheet" href="CSS/results.css">
 </head>
 <body>
 
@@ -37,10 +38,8 @@
             window.location.href = "mainMenu.html";
         }
 
-        // Retrieve region from localStorage
         var region = localStorage.getItem('region');
 
-        // Update the h1 tag to display the region
         var h1Element = document.querySelector('h1');
         h1Element.textContent = "Final Results (No Timer) - " + region;
 

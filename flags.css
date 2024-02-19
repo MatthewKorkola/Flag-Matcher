@@ -1,7 +1,0 @@
-.flag {
-    position: absolute;
-    white-space: nowrap;
-    font-size: 20px; /* Adjust flag font size as needed */
-    font-weight: bold; /* Adjust flag font weight as needed */
-    outline: 2px solid black;
-}

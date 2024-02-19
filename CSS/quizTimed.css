@@ -60,7 +60,7 @@ img#flag {
 }
 
 .option {
-    margin-bottom: 5px; /* Add space between buttons */
+    margin-bottom: 5px;
     max-width: 500px;
     align-self: center;
     font-size: 24px;
@@ -81,6 +81,10 @@ img#flag {
     background-color: #ccc;
 }
 
+#timer {
+    font-size: 24px;
+    colour: black;
+}
 #message {
     font-size: 20px;
     display: none;

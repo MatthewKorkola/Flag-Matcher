@@ -35,7 +35,6 @@ var continentCountries = {
     ]
 };
 
-// Placeholder for flagPosition
 var flagPosition = { top: '22%', left: '50%', transform: 'translate(-50%, -50%)' };
 
 var flagWidth = 200; // Default flag width
@@ -45,9 +44,9 @@ var flagHeight = 120; // Default flag height
 function createFlag(country, position, width, height) {
     var flag = document.createElement('img');
     flag.classList.add('flag');
-    flag.src = "Flags/Flag_of_" + country.replace(/\s/g, '_') + ".svg.png"; // Set flag image source
-    flag.style.opacity = 0; // Start with zero opacity
-    flag.style.position = 'absolute'; // Set flag position
+    flag.src = "Flags/Flag_of_" + country.replace(/\s/g, '_') + ".svg.png";
+    flag.style.opacity = 0;
+    flag.style.position = 'absolute';
     flag.style.top = position.top;
     flag.style.left = position.left;
     flag.style.transform = position.transform; // Center the flag
@@ -58,8 +57,8 @@ function createFlag(country, position, width, height) {
         width = 200;
     }
 
-    flag.style.width = width + 'px'; // Set flag width
-    flag.style.height = height + 'px'; // Set flag height
+    flag.style.width = width + 'px';
+    flag.style.height = height + 'px';
 
     document.body.appendChild(flag);
 

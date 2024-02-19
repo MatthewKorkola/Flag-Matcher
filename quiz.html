@@ -1,3 +1,4 @@
+<!-- This page displays the flags, options, selected region, and user stats for non-timed quizzes. -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quiz (No Timer)</title>
 
-    <!-- Include the quiz.js file -->
-    <script src="quiz.js"></script>
-    <link rel="stylesheet" href="quiz.css">
+    <script src="JavaScript/quiz.js"></script>
+    <link rel="stylesheet" href="CSS/quiz.css">
 </head>
 <body>
-    <!-- Button to go back to the main menu -->
     <button onclick="redirectToMainMenu()">Main Menu</button>
 
     <h1>Quiz</h1>
@@ -21,10 +20,8 @@
             window.location.href = "mainMenu.html";
         }
 
-        // Retrieve region from localStorage
         var region = localStorage.getItem('region');
 
-        // Update the h1 tag to display the region
         var h1Element = document.querySelector('h1');
         h1Element.textContent = "Quiz - " + region;
     </script>

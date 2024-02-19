@@ -1,3 +1,4 @@
+<!-- This page displays the flags, options, selected region, time remaining, and user stats for timed quizzes. -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quiz (Timer)</title>
 
-    <!-- Include the quiz.js file -->
-    <script src="quizTimed.js"></script>
-    <link rel="stylesheet" href="quizTimed.css">
+    <script src="JavaScript/quizTimed.js"></script>
+    <link rel="stylesheet" href="CSS/quizTimed.css">
 </head>
 <body>
-    <!-- Button to go back to the main menu -->
     <button onclick="redirectToMainMenu()">Main Menu</button>
 
     <h1>Europe (Timer)</h1>
@@ -21,10 +20,8 @@
             window.location.href = "mainMenu.html";
         }
 
-        // Retrieve region from localStorage
         var region = localStorage.getItem('region');
 
-        // Update the h1 tag to display the region
         var h1Element = document.querySelector('h1');
         h1Element.textContent = "Quiz - " + region;
     </script>
@@ -38,8 +35,6 @@
     <div id="correct"></div>
     <div id="incorrect"></div>
     <div id="streak"></div>
-
-    <!-- Your existing HTML content -->
 
 </body>
 </html>

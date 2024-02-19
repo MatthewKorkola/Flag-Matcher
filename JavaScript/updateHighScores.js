@@ -1,5 +1,3 @@
-// updateHighScores.js
-
 // Function to retrieve arrays from local storage
 function getArraysFromLocalStorage() {
   const arrays = JSON.parse(localStorage.getItem('arrays')) || [];
@@ -52,7 +50,7 @@ function insertValues() {
     // Retrieve the existing message or set it to an empty string if it doesn't exist
     let existingMessage = document.getElementById('resultsMessage').textContent || '';
 
-    // Display a message to the player
+    // The user's results made the top 5
     document.getElementById('resultsMessage').textContent = existingMessage + " High scores updated!";
   }
 
