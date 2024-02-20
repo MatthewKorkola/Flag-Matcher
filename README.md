@@ -14,8 +14,9 @@ Flag Matcher is a website designed to help users identify flags from countries o
 - Region-based Mode: Complete quizzes focusing on specific regions for targeted learning.
 - All Countries Mode: Complete quizzes covering flags from all countries, suitable for advanced users.
 - 30 Random Mode: Complete quizzes on a random selection of 30 countries to assess understanding.
-- Flag Archive Mode: Access and study all flags categorized by region, perfect for improving knowledge.
-- High Scores Mode: View high scores achieved in timed quizzes across all regions and aim to beat personal records.
+- Flag Archive: Access and study all flags categorized by region, perfect for improving knowledge.
+- High Scores: View high scores achieved in timed quizzes across all regions and aim to beat personal records.
+- Quick Achievements: Answer questions quickly to earn extra points, great for motivating more thorough study.
 
 ## Setup
 
